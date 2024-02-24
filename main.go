@@ -1,17 +1,16 @@
 package main
 
 import (
-	"net/http"
-
+	"github.com/MXkodo/inventory/controllers"
+	"github.com/MXkodo/inventory/models"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	route := gin.Default()
-
-	route.GET("/", func(context *gin.Context) {
-		context.JSON(http.StatusOK, gin.H{"message": "Hello World!"})
-	})
+	models.ConnectDB()
+	route.GET("/items", controllers.GetAllItems)
+	route.POST("/items", controllers.CreateItem)
 
 	route.Run()
 }
