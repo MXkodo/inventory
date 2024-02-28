@@ -3,6 +3,7 @@ package controllers
 import (
 	"net/http"
 
+	initial "github.com/MXkodo/inventory/initializers"
 	"github.com/MXkodo/inventory/models"
 	"github.com/gin-gonic/gin"
 )
@@ -28,7 +29,7 @@ type UpdateItemInput struct {
 // Получаем список всех позиций
 func GetAllItems(context *gin.Context) {
    var items []models.Item
-   models.DB.Find(&items)
+   initial.DB.Find(&items)
    context.JSON(http.StatusOK, gin.H{"items": items})
 }
 
@@ -49,7 +50,7 @@ func CreateItem(context *gin.Context) {
 	Budget: input.Budget, 
 	Desc: input.Desc,}
 
-   models.DB.Create(&item)
+   initial.DB.Create(&item)
 
    context.JSON(http.StatusOK, gin.H{"items": item})
 }
@@ -59,7 +60,7 @@ func CreateItem(context *gin.Context) {
 func GetItem(context *gin.Context) {
    // Проверяем имеется ли запись
    var item models.Item
-   if err := models.DB.Where("id = ?", context.Param("id")).First(&item).Error; err != nil {
+   if err := initial.DB.Where("id = ?", context.Param("id")).First(&item).Error; err != nil {
       context.JSON(http.StatusBadRequest, gin.H{"error": "Запись не существует"})
       return
    }
@@ -72,7 +73,7 @@ func GetItem(context *gin.Context) {
 func UpdateItem(context *gin.Context) {
    // Проверяем имеется ли такая запись перед тем как её менять
    var item models.Item
-   if err := models.DB.Where("id = ?", context.Param("id")).First(&item).Error; err != nil {
+   if err := initial.DB.Where("id = ?", context.Param("id")).First(&item).Error; err != nil {
       context.JSON(http.StatusBadRequest, gin.H{"error": "Запись не существует"})
       return
    }
@@ -92,7 +93,7 @@ func UpdateItem(context *gin.Context) {
 		"Desc":      input.Desc,
 	}
 
-   models.DB.Model(&item).Updates(updateFields)
+   initial.DB.Model(&item).Updates(updateFields)
 
    context.JSON(http.StatusOK, gin.H{"items": item})
 }
