@@ -11,6 +11,11 @@ func init() {
 	initializers.ConnectToDb()
 }
 
+func init() {
+	initializers.LoadEnvVariables()
+	initializers.ConnectToDb()
+}
+
 func main() {
 	route := gin.Default()
 	route.GET("/items", controllers.GetAllItems)
