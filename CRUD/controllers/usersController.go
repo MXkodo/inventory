@@ -13,12 +13,12 @@ import (
 )
 
 var body struct {
-		UserName string
-		Password string
-	}
+	UserName string
+	Password string
+}
 
 func Signup(c *gin.Context) {
-	
+
 	if c.Bind(&body) != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Failed to read body",
@@ -28,7 +28,7 @@ func Signup(c *gin.Context) {
 
 	//Hash the password
 	hash, err := bcrypt.GenerateFromPassword([]byte(body.Password), 10)
-	
+
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Failed to hash password",
@@ -53,7 +53,7 @@ func Signup(c *gin.Context) {
 
 func Login(c *gin.Context) {
 	//Get the UserName and pass off req body
-		if c.Bind(&body) != nil {
+	if c.Bind(&body) != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Failed to read body",
 		})
@@ -81,8 +81,8 @@ func Login(c *gin.Context) {
 	}
 	//Generate a jwt token
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-	"sub": user.ID,
-	"exp": time.Now().Add(time.Hour * 24 * 30).Unix(),
+		"sub": user.ID,
+		"exp": time.Now().Add(time.Hour * 24 * 30).Unix(),
 	})
 
 	tokenString, err := token.SignedString([]byte(os.Getenv("SECRET")))
@@ -95,13 +95,15 @@ func Login(c *gin.Context) {
 	}
 	//send it back
 	c.SetSameSite(http.SameSiteLaxMode)
-	c.SetCookie("Authorizathion", tokenString, 3600 * 24 * 30, "", "", false, true)
+	c.SetCookie("Authorization", tokenString, 3600*24*30, "", "", false, true)
 
 	c.JSON(http.StatusOK, gin.H{})
 }
 
 func Validate(c *gin.Context) {
+	user, _ := c.Get("user")
+
 	c.JSON(http.StatusOK, gin.H{
-		"message": "I'm logged in",
+		"message": user,
 	})
 }

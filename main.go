@@ -19,13 +19,15 @@ func main() {
 	//Auth
 	route.POST("/signup", controllers.Signup)
 	route.POST("/login", controllers.Login)
-	route.GET("/validate", middleware.RequireAuth, controllers.Validate)
 
 	//CRUD
-	route.GET("/items", controllers.GetAllItems)
-	route.POST("/items", controllers.CreateItem)
-	route.GET("/items/:id", controllers.GetItem)
-	route.PATCH("/items/:id", controllers.UpdateItem)
-
+	items := route.Group("/items")
+	items.Use(middleware.RequireAuth)
+	{
+		items.GET("", controllers.GetAllItems)
+		items.POST("", controllers.CreateItem)
+		items.GET("/:id", controllers.GetItem)
+		items.PATCH("/:id", controllers.UpdateItem)
+	}
 	route.Run()
 }
