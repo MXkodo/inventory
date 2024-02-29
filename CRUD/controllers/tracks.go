@@ -3,8 +3,8 @@ package controllers
 import (
 	"net/http"
 
-	initial "github.com/MXkodo/inventory/initializers"
-	"github.com/MXkodo/inventory/models"
+	initial "github.com/MXkodo/inventory/CRUD/initializers"
+	"github.com/MXkodo/inventory/CRUD/models"
 	"github.com/gin-gonic/gin"
 )
 
