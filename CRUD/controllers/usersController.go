@@ -100,10 +100,12 @@ func Login(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{})
 }
 
-func Validate(c *gin.Context) {
-	user, _ := c.Get("user")
-
-	c.JSON(http.StatusOK, gin.H{
-		"message": user,
-	})
+func Logout(c *gin.Context){
+	c.SetCookie("Authorization", "", -1, "","localhost", false, true)
+	
+		c.JSON(http.StatusOK, gin.H{
+			"OK": "Cookie has been deleted",
+		})
+		
+	
 }

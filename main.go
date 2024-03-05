@@ -4,6 +4,7 @@ import (
 	"github.com/MXkodo/inventory/CRUD/controllers"
 	"github.com/MXkodo/inventory/CRUD/initializers"
 	"github.com/MXkodo/inventory/CRUD/middleware"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -15,10 +16,17 @@ func init() {
 
 func main() {
 	route := gin.Default()
-
+	//CORS
+    config := cors.DefaultConfig()
+    config.AllowOrigins = []string{"*"} 
+    config.AllowMethods = []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"}
+    config.AllowHeaders = []string{"Origin", "Content-Length", "Content-Type", "Authorization"}
+    config.AllowCredentials = true
+    route.Use(cors.New(config))
 	//Auth
 	route.POST("/signup", controllers.Signup)
 	route.POST("/login", controllers.Login)
+	route.GET("/logout", controllers.Logout)
 
 	//CRUD
 	items := route.Group("/items")
