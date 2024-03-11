@@ -1,0 +1,14 @@
+<svg width="1920" height="89" viewBox="0 0 1920 89" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 0H1920V89H0V0Z" fill="url(#paint0_linear_103_4)"/>
+<defs>
+<linearGradient id="paint0_linear_103_4" x1="1920" y1="88.9992" x2="-6.60218e-05" y2="16.9996" gradientUnits="userSpaceOnUse">
+<stop stop-color="#4A55A2"/>
+<stop offset="0.0001" stop-color="#4A55A2" stop-opacity="0.989583"/>
+<stop offset="0.72989" stop-color="#6F78BA" stop-opacity="0.99494"/>
+<stop offset="1" stop-color="#9299D1"/>
+</linearGradient>
+</defs>
+<filter id='shadow-shapka' color-interpolation-filters="sRGB">
+    <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.5"/>
+</filter>
+</svg>
