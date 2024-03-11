@@ -17,8 +17,7 @@ func init() {
 
 func main() {
 	route := gin.Default()
-	//CORS
-	   route.LoadHTMLGlob("public/templates/*.html") // Загрузка шаблонов HTML
+	route.LoadHTMLGlob("public/templates/*.html") // Загрузка шаблонов HTML
 
 	// Public group with authentication
 	route.Static("/public", "./public") // Обслуживание статических файлов из папки public
@@ -46,6 +45,5 @@ func main() {
 		items.GET("/:id", controllers.GetItem)
 		items.PATCH("/:id", controllers.UpdateItem)
 	}
-	
 	route.Run()
 }
