@@ -1,0 +1,101 @@
+table {
+  margin-top: 50px;
+  font-size: 14px;
+  border-radius: 10px;
+  border-spacing: 0;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+}
+
+th {
+  background: #bcebdd;
+  color: white;
+  text-shadow: 0 1px 1px #2d2020;
+  padding: 10px 10px;
+}
+th,
+td {
+  border-style: solid;
+  border-width: 0 1px 1px 0;
+  border-color: white;
+}
+th:first-child,
+td:first-child {
+  text-align: left;
+}
+th:first-child {
+  border-top-left-radius: 10px;
+}
+th:last-child {
+  border-top-right-radius: 10px;
+  border-right: none;
+}
+
+tr:last-child td:last-child {
+  border-radius: 0 0 10px 0;
+}
+tr td:last-child {
+  border-right: none;
+}
+input,
+textarea {
+  padding: 10px;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+button {
+  height: 30px;
+  width: 100px;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+  color: #000000;
+  cursor: pointer;
+  display: block;
+  position: relative;
+  border: 2px solid #f7ca18;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+button:hover {
+  border-radius: 15px;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  color: #000 !important;
+  background-color: transparent;
+  text-shadow: none;
+}
+button.Update {
+  color: blue;
+}
+button:hover:before {
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  bottom: 0%;
+  top: auto;
+  height: 100%;
+}
+button:before {
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 0px;
+  width: 100%;
+  z-index: -1;
+  content: "";
+  color: #000 !important;
+  background: #f7ca18;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}

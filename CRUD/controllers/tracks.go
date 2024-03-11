@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"net/http"
+	"time"
 
 	initial "github.com/MXkodo/inventory/CRUD/initializers"
 	"github.com/MXkodo/inventory/CRUD/models"
@@ -46,7 +47,7 @@ func CreateItem(context *gin.Context) {
 		InvNumber: input.InvNumber,
 		Name:      input.Name,
 		Storage:   input.Storage,
-		Date:      input.Date,
+		Date:      time.Now().Format("02.01.2006"),
 		Budget:    input.Budget,
 		Desc:      input.Desc}
 

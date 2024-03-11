@@ -17,7 +17,7 @@ func RequireAuth(c *gin.Context) {
 	tokenString, err := c.Cookie("Authorization")
 
 	if err != nil {
-		c.AbortWithStatus(http.StatusUnauthorized)
+		c.Redirect(http.StatusFound, "/login")
 		return
 	}
 	//Decode/validate it
@@ -32,7 +32,7 @@ func RequireAuth(c *gin.Context) {
 	if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		//Check the exp
 		if float64(time.Now().Unix()) > claims["exp"].(float64) {
-			c.AbortWithStatus(http.StatusUnauthorized)
+			c.Redirect(http.StatusFound, "/login")
 		}
 
 		//Find the user with token sub
@@ -40,7 +40,7 @@ func RequireAuth(c *gin.Context) {
 		initializers.DB.First(&user, claims["sub"])
 
 		if user.ID == 0 {
-			c.AbortWithStatus(http.StatusUnauthorized)
+			c.Redirect(http.StatusFound, "/login")
 			return
 		}
 		//Attach to req
@@ -50,7 +50,7 @@ func RequireAuth(c *gin.Context) {
 		c.Next()
 
 	} else {
-		c.AbortWithStatus(http.StatusUnauthorized)
+		c.Redirect(http.StatusFound, "/login")
 	}
 
 }

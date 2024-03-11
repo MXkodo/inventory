@@ -49,6 +49,7 @@ func Signup(c *gin.Context) {
 
 	//Respond
 	c.JSON(http.StatusOK, gin.H{})
+	c.Redirect(http.StatusTemporaryRedirect, "/public")
 }
 
 func Login(c *gin.Context) {
@@ -95,9 +96,9 @@ func Login(c *gin.Context) {
 	}
 	//send it back
 	c.SetSameSite(http.SameSiteLaxMode)
-	c.SetCookie("Authorization", tokenString, 3600*24*30, "", "", false, true)
+	c.SetCookie("Authorization", tokenString, 3600*12, "", "", false, false)
 
-	c.JSON(http.StatusOK, gin.H{})
+	c.Redirect(http.StatusFound, "/")
 }
 
 func Logout(c *gin.Context){

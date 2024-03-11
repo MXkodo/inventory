@@ -1,0 +1,63 @@
+css body {
+  margin: 0;
+}
+.place {
+  /* background-color: aqua; */
+
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border {
+  height: 35vh;
+  border-radius: 2vw;
+  width: 60vh;
+  box-shadow: 0.3vh 0.3vh 0.3vh 0.3vh rgba(0, 0, 255, 0.2);
+}
+h1 {
+  font-family: inter, "Inter Bold";
+  text-align: center;
+  font-size: 3vh;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2vh;
+}
+input {
+  font-family: inter, "Inter Bold";
+  text-align: center;
+  margin-top: 2vh;
+  border-radius: 1vh;
+  font-size: 1.3vw;
+  width: 40vh;
+  border: #bfbfbf;
+  box-shadow: 0.2vh 0.2vh 0.2vh 0.2vh rgba(0, 0, 255, 0.2);
+}
+button {
+  padding: 0 2vh;
+  margin: 0 1vh 1vh 0;
+  border-radius: 1.5vh;
+  line-height: 35px;
+  font-size: 2vh;
+  margin-top: 4vh;
+  color: #fff;
+  background-color: #53547a;
+  border: #53547a;
+}
+header {
+  height: 10.7vh; /* Высота шапки */
+  background-color: #53547a;
+  box-shadow: 0 0 1vh rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+  font-family: inter, "Inter Bold";
+  font-size: 7vh;
+  margin-top: -20vh;
+  text-align: center;
+  color: #c8c1c3;
+}

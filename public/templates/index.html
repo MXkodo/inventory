@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="/public/css/main.css" />
+    <script src="/public/js/js.js"></script>
+    <title>Main</title>
+  </head>
+  <body>
+    <!--Тут таится модальное окно-->
+    <div id="openModal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Добавить Пк</h3>
+            <a href="#close" title="Close" class="close">×</a>
+          </div>
+          <div class="modal-body">
+            <form id="myForm" action="/items" method="post" align="center">
+              <p>Инв. номер</p>
+              <input type="text" name="invnumber" required />
+              <p>Название</p>
+              <input type="text" name="name" required />
+              <p>Хранение</p>
+              <input type="text" name="storage" required />
+              <p>Бюджет</p>
+              <input type="checkbox" name="budget" required />
+              <p>Описание</p>
+              <textarea name="desc"></textarea>
+              <button type="submit">Добавить</button>
+            </form>
+
+            <script>
+              document
+                .getElementById("myForm")
+                .addEventListener("submit", function (event) {
+                  event.preventDefault();
+
+                  const formData = new FormData(event.target);
+                  const data = Object.fromEntries(formData.entries());
+                  const jsonData = JSON.stringify(data);
+
+                  fetch("/items", {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: jsonData,
+                  })
+                    .then((response) => response.json())
+                    .then((data) => console.log(data))
+                    .catch((error) => console.error("Ошибка:", error));
+                });
+            </script>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header>
+      <div class="hat test">
+        <div class="head test logo">
+          <div class="box-1 test">
+            <a href="/"><img class="agtu" src="/public/img/main_site.png" /></a>
+          </div>
+        </div>
+        <div class="head test pk">
+          <div class="box-2 test">
+            <a href="#openModal"
+              ><img class="add" src="/public/img/add.png"
+            /></a>
+          </div>
+          <div class="pk-1">
+            <img class="pk-2" src="/public/img/pk.png" />
+          </div>
+          <div><article>Список компьютеров</article></div>
+        </div>
+
+        <div class="head test">
+          <div class="box-3 test">
+            <input
+              type="text"
+              type="image"
+              class="Search"
+              placeholder="Поиск"
+              src="/public/img/icons8-лупа-64.png"
+            />
+          </div>
+          <div class="profile">
+            <!-- <div class="box-4 test menu-btn1"><a href=""><img class="add profile" src="/img/icons8-пользователь-мужчина-в-кружке-96-1.png"></a></div>
+                    <div class="box-4 test menu-btn">
+                        <span></span>
+                        <span></span>dasdasdasdasdads
+                        <span></span>
+                    </div> -->
+            <ul>
+              <li>
+                <a
+                  ><img
+                    class="add profile"
+                    src="/public/img/icons8-пользователь-мужчина-в-кружке-96-1.png"
+                /></a>
+                <ul class="helper">
+                  <li class="login">Кабан Кабаныч></li>
+                  <li><a class="exit" href="">EXIT</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="bone">
+      <table class="second">
+        <thead>
+          <tr>
+            <th>Инв. номер</th>
+            <th>Описание</th>
+            <th>Владелец</th>
+            <th>Локация</th>
+            <th>&#9998;</th>
+          </tr>
+        </thead>
+        <tr>
+          <td>М00254</td>
+          <td>Win 10</td>
+          <td></td>
+          <td></td>
+          <td>
+            <a href="/public/templates/edit.html"
+              ><button class="change">Изменить</button></a
+            >
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
