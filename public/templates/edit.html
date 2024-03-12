@@ -7,21 +7,80 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Мы крутые</title>
+    <link rel="stylesheet" href="../css/edit.css" />
   </head>
-
   <body>
-    <h2 align="center">Добавить новый товар</h2>
-    <form action="vendor/create.php" method="post" align="center">
+    <h2 align="center">Изменение позиции</h2>
+    <form id="myFormUpdate" action="/items" method="post" align="center">
       <p>Инв. номер</p>
-      <input type="text" name="Inventory" />
+      <input type="text" name="invnumber" required />
+      <p>Название</p>
+      <input type="text" name="name" required />
+      <p>Хранение</p>
+      <input type="text" name="storage" required />
+      <p>Бюджет</p>
+      <input type="checkbox" name="budget" required />
       <p>Описание</p>
-      <textarea name="description"></textarea>
-      <p>Владелец</p>
-      <input type="text" name="Owner" />
-      <button type="submit">Обновить</button>
-      <button type="submit">Qr-Code</button>
+      <textarea name="desc"></textarea>
+      <input type="hidden" name="date" />
+      <button type="submit">Сохранить</button>
     </form>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var itemJson = localStorage.getItem("selectedItem");
+        var item = JSON.parse(itemJson);
+        if (item) {
+          document.querySelector('input[name="invnumber"]').value =
+            item.invnumber;
+          document.querySelector('input[name="name"]').value = item.name;
+          document.querySelector('input[name="storage"]').value = item.storage;
+          document.querySelector('textarea[name="desc"]').value = item.desc;
+          document.querySelector('input[name="budget"]').checked = item.budget;
+          console.log(item.date);
+          document.querySelector('input[name="date"]').value = item.date;
+        }
+
+        document
+          .getElementById("myFormUpdate")
+          .addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            var formData = new FormData(this);
+            var data = {};
+            formData.forEach(function (value, key) {
+              if (key === "budget") {
+                data[key] = value === "on";
+              } else {
+                data[key] = value;
+              }
+            });
+
+            var jsonData = JSON.stringify(data);
+            console.log(item.date);
+
+            fetch("/items/" + item.id, {
+              method: "PATCH",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: jsonData,
+            })
+              .then((response) => {
+                if (!response.ok) {
+                  throw new Error(
+                    "Ошибка при отправке данных: " + response.statusText
+                  );
+                }
+                return response.json();
+              })
+              .then((data) => {
+                window.location.href = "/";
+              })
+              .catch((error) => {
+                console.error("Ошибка при отправке данных:", error);
+              });
+          });
+      });
+    </script>
   </body>
 </html>

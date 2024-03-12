@@ -33,8 +33,8 @@ func main() {
 
 	// Главная страница
 	route.GET("/", middleware.RequireAuth, func(c *gin.Context) {
-    c.HTML(http.StatusOK, "index.html", gin.H{}) // Отображение главной страницы
-})
+		c.HTML(http.StatusOK, "index.html", gin.H{}) // Отображение главной страницы
+	})
 
 	//CRUD
 	items := route.Group("/items")

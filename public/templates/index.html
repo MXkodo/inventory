@@ -79,7 +79,7 @@
           <div><article>Список компьютеров</article></div>
 
           <div class="jurnal-1">
-            <img class="jurnal-2" scr="/public/img/jurnal.svg" />
+            <img class="jurnal-2" src="/public/img/jurnal.svg" />
           </div>
           <div><article>Журнал событий</article></div>
         </div>
@@ -95,12 +95,6 @@
             />
           </div>
           <div class="profile">
-            <!-- <div class="box-4 test menu-btn1"><a href=""><img class="add profile" src="/img/icons8-пользователь-мужчина-в-кружке-96-1.png"></a></div>
-                    <div class="box-4 test menu-btn">
-                        <span></span>
-                        <span></span>dasdasdasdasdads
-                        <span></span>
-                    </div> -->
             <ul>
               <li>
                 <a
@@ -156,7 +150,7 @@
         $.get("/items", function (data) {
           var items = data.items;
           var tableBody = $("#itemsTable tbody");
-          tableBody.empty(); // Очищаем текущее содержимое таблицы
+          tableBody.empty();
 
           items.forEach(function (item) {
             var row = $("<tr>");
@@ -165,13 +159,37 @@
             row.append($("<td>").text(item.storage));
             row.append($("<td>").text(item.date));
             row.append($("<td>").text(item.budget ? "Да" : "Нет"));
+
+            var changeButton = $('<button class="change">Подробнее</button>');
+            changeButton.attr("data-item", JSON.stringify(item));
             row.append(
               $("<td>").html(
-                '<a href="/public/templates/edit.html"><button class="change">Изменить</button></a>'
+                '<a href="/public/templates/edit.html?id=' +
+                  item.id +
+                  '">' +
+                  changeButton.prop("outerHTML") +
+                  "</a>"
               )
             );
             tableBody.append(row);
           });
+        });
+
+        $(document).on("click", ".change", function (e) {
+          e.preventDefault();
+
+          var item = JSON.parse($(this).attr("data-item"));
+          if (item) {
+            console.log("Item fetched:", item);
+            localStorage.setItem("selectedItem", JSON.stringify(item));
+            console.log(
+              "Item stored in localStorage:",
+              localStorage.getItem("selectedItem")
+            );
+            window.location.href = $(this).closest("a").attr("href");
+          } else {
+            console.error("Item is undefined");
+          }
         });
       });
     </script>

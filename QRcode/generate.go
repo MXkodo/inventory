@@ -6,9 +6,9 @@ import (
 	qrcode "github.com/skip2/go-qrcode"
 )
 
-func Generate() {
+func Generate(url string) {
 	 var png []byte
-  	 png, err := qrcode.Encode("https://astu.org", qrcode.Medium, 256)
+  	 png, err := qrcode.Encode(url, qrcode.Medium, 256)
 	 if err != nil {
 		return
 	 }

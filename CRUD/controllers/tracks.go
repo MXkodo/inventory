@@ -96,5 +96,6 @@ func UpdateItem(context *gin.Context) {
 
 	initial.DB.Model(&item).Updates(updateFields)
 
-	context.JSON(http.StatusOK, gin.H{"items": item})
+   context.JSON(http.StatusOK, gin.H{"message": "Данные успешно обновлены"})
+
 }
