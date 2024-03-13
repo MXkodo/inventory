@@ -51,7 +51,7 @@ ul {
   padding: 0;
   list-style: none;
   font-size: 1vh;
-  font-family: "Bold";
+  font-family: "Light";
   text-align: center;
 }
 
@@ -67,28 +67,27 @@ li ul {
   display: flex;
   /* position: absolute; */
   margin-top: 0.3vh;
-  margin-right: 2vw;
-  margin-left: 2vw;
+  margin-right: 4vw;
+  margin-left: 1vw;
   position: absolute;
   right: 20vh;
  
 }
 .helper li {
-  /* border: solid; */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 2vh;
   width: 8vw;
-  background-color: #ffffff;
-  border-radius: 25px;
-  
-  /* width: auto;
-  margin-right: 3px; */
 }
+
 .helper {
-  right: 1;
+  background-color: #ffffff;
+  border: 1px solid #53547a;
+  border-radius: 8px;
   position: absolute;
+  right: 1vh;
+  filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
 }
 li .exit {
   display: block;
@@ -100,10 +99,17 @@ li .exit {
 }
 .helper li:hover {
   background-color: #6678b1;
+  border-radius: 8px;
 }
 li:hover .helper {
   display: block;
 }
+
+li img {
+  width: 1vh; /* Занимает всю ширину контейнера */
+  height: auto; /* Занимает всю высоту контейнера */
+  object-fit: cover; /* Масштабирует изображение, сохраняя пропорции */
+ }
 
 /*------------------------------------------------------------------
 -------------------------------------------------------*/
@@ -129,6 +135,7 @@ input {
     right: 44vh;
     top: 3.2vh;
     display: flex;
+    outline: none;
   }
 
   input::placeholder {
@@ -180,6 +187,8 @@ input {
   .profile {
     height: 6vh;
     width: auto;
+    position: relative;
+    left: 2vh;
   }
   /*Это работа с пикчей агту*/
   .agtu {
@@ -188,6 +197,7 @@ input {
     width: auto;
     filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
   }
+
   /*Шапка*/
   .hat {
     height: 8vh;
@@ -200,6 +210,8 @@ input {
       rgba(111, 120, 186, 0.99) 72.99%,
       #9299d1 100%
     );
+    width: 100%; 
+    
   }
   .head {
     height: 8vh;
@@ -210,6 +222,9 @@ input {
   /* .test{
     border: solid;
   } */
+
+  
+
   .pk {
     display: flex;
     filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
@@ -217,6 +232,8 @@ input {
     margin-right: 70vh;
   }
   .pk-2 {
+    position: relative;
+    z-index: 1000;
     margin-top: 0.5vh;
     margin-left: 9vh;
     height: 4.3vh;
@@ -240,11 +257,23 @@ input {
     filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));;
   }*/
 
+  .page-pk{
+    position: absolute;
+    /*margin-top: 10px;*/
+    top: 0%;
+    left: 23.8%;
+    border-radius: 14px;
+    width: 31%;
+    height: 100%;
+    background: #7c85d1;
+  }
+
   .line-button-1{
     display: flex;
     position: absolute;
     margin-left: 7.5vh;
     width: auto;
+    height: auto;
   }
 
   
@@ -268,6 +297,7 @@ input {
     position: absolute;
     margin-left: 50vh;
     width: auto;
+    height: auto;
   }
 
   /*.archiv{
@@ -284,7 +314,7 @@ input {
   .archiv-2 {
     position: relative;
     margin-top: 0.5vh;
-    margin-left: 8vh;
+    margin-left: 12vh;
     height: 2.7vh;
     width: auto;
   }
@@ -332,6 +362,8 @@ input {
     border-radius: 15px;
     font-family: "Light";
     border-collapse: collapse;
+    border-color: #53547A;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   }
   thead th {
     position: sticky;
@@ -358,19 +390,23 @@ input {
     text-align: center;
   }
   tr:hover {
-    background-color: #40428848;
+    background-color: rgba(124, 133, 209, 0.2); 
   }
   .second::-webkit-scrollbar {
     width: auto;
   }
-  .second::-webkit-scrollbar-track {
-    border: darkgrey;
-    /* border-radius: 9px; */
-  }
+ /* .second::-webkit-scrollbar-track {
+    border: #D9D9D9;
+    background: rgba(217, 217, 217, 0.5);
+    border-radius: 5px;
+  } */
   .second::-webkit-scrollbar-thumb {
+    background: rgba(217, 217, 217, 0.4);
     border-radius: 15px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
   }
+  .second::-webkit-scrollbar-thumb:hover {
+    border: 2px solid #ccc4c5; /* Граница ползунка */
+   }
 }
 /*----адаптивка для мобилки---------------------------------------------------------------------------------------------------*/
 @media (hover: none) and (pointer: coarse) {
@@ -386,6 +422,7 @@ input {
     background: rgba(255, 255, 255, 0.06);
     position: relative;
     right: 1vh;
+    outline: none;
   }
 
   input::placeholder {
@@ -427,6 +464,12 @@ input {
     width: 5vw;
     height: auto;
    } */
+
+   * {
+    margin: 0;
+    padding: 0;
+}
+
   .hat {
     height: 7vh;
     display: flex;
@@ -472,26 +515,44 @@ input {
     margin-right: 3vw;
   }
   .pk {
+    position: relative;
+    z-index: 1000;
     display: flex;
     margin-right: 3vw;
     position: relative;
     right: 1vh;
   }
   .pk-2 {
+    position: relative;
+    z-index: 1000;
     margin-top: 0.5vh;
     height: 2vh;
     width: auto;
   }
   .pk-1 {
+    
     padding-right: 0.3vw;
   }
 
   article {
+    position: relative;
+    z-index: 1000;
     font-size: 1vw;
     color: #c8c1c3;
     text-shadow: 3px 4px 8px #000;
     /* font-weight: 550; */
     font-family: "Bold";
+  }
+
+  .page-pk{
+    position: absolute;
+    /*margin-top: 10px;*/
+    top: 0%;
+    left: 15%;
+    border-radius: 14px;
+    width: 35%;
+    height: 100%;
+    background: #7c85d1;
   }
 
   .line-button-1{
@@ -573,6 +634,8 @@ input {
     line-height: 3vh;
     font-family: "Light";
     border-collapse: collapse;
+    border-color: #53547A;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   }
   thead th {
     position: sticky;
@@ -599,6 +662,12 @@ input {
     text-align: center;
     font-family: "Bold";
   }
+
+  tr:hover {
+    /*background-color: #7C85D1;*/
+    background-color: rgba(124, 133, 209, 0.2); 
+  }
+
   .second::-webkit-scrollbar {
     width: 2vw;
   }
