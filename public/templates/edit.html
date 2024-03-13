@@ -7,6 +7,7 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <link rel="stylesheet" href="../css/edit.css" />
   </head>
   <body>
@@ -25,8 +26,22 @@
       <input type="hidden" name="date" />
       <button type="submit">Сохранить</button>
     </form>
+    <div id="qrCodeContainer"></div>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        var id = urlParams.get("id");
+        var url = "http://localhost:8080/public/templates/edit.html?id=" + id;
+
+        var qrcode = new QRCode(document.getElementById("qrCodeContainer"), {
+          text: url,
+          width: 256,
+          height: 256,
+          colorDark: "#000000",
+          colorLight: "#ffffff",
+          correctLevel: QRCode.CorrectLevel.H,
+        });
+
         var itemJson = localStorage.getItem("selectedItem");
         var item = JSON.parse(itemJson);
         if (item) {
