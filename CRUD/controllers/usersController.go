@@ -13,13 +13,14 @@ import (
 )
 
 var body struct {
+	FIO string
 	UserName string
 	Password string
 }
 
 func Signup(c *gin.Context) {
 
-	if c.Bind(&body) != nil {
+	if c.BindJSON(&body) != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Failed to read body",
 		})
@@ -37,7 +38,7 @@ func Signup(c *gin.Context) {
 	}
 
 	//Create User
-	user := models.User{UserName: body.UserName, Password: string(hash)}
+	user := models.User{FIO: body.FIO, UserName: body.UserName, Password: string(hash)}
 	result := initializers.DB.Create(&user)
 
 	if result.Error != nil {
@@ -49,7 +50,7 @@ func Signup(c *gin.Context) {
 
 	//Respond
 	c.JSON(http.StatusOK, gin.H{})
-	c.Redirect(http.StatusTemporaryRedirect, "/public")
+	c.Redirect(http.StatusTemporaryRedirect, "/")
 }
 
 func Login(c *gin.Context) {
@@ -97,8 +98,11 @@ func Login(c *gin.Context) {
 	//send it back
 	c.SetSameSite(http.SameSiteLaxMode)
 	c.SetCookie("Authorization", tokenString, 3600*12, "", "", false, false)
-
-	c.Redirect(http.StatusFound, "/")
+	
+	c.JSON(http.StatusOK, gin.H{
+    "success": true,
+    "fio": user.FIO,
+})
 }
 
 func Logout(c *gin.Context){

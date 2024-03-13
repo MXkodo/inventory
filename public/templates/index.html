@@ -107,6 +107,7 @@
             <input
               type="text"
               type="image"
+              id="searchInput"
               class="Search"
               placeholder="Поиск"
               src="/public/img/poisk.svg"
@@ -138,8 +139,14 @@
                           console.error("Ошибка при выходе:", error);
                         });
                     }
+                    document.addEventListener("DOMContentLoaded", function () {
+                      var fio = localStorage.getItem("fio");
+                      if (fio) {
+                        document.querySelector(".username").textContent = fio;
+                      }
+                    });
                   </script>
-                  <li class="login">Кабан Кабаныч></li>
+                  <li class="login username"></li>
                   <li><a class="exit" href="#" onclick="logout()">EXIT</a></li>
                 </ul>
               </li>
@@ -165,6 +172,20 @@
     </div>
     <script>
       $(document).ready(function () {
+        // Функция для фильтрации таблицы
+        function filterTable() {
+          var searchValue = $("#searchInput").val().toLowerCase();
+          $("#itemsTable tbody tr").filter(function () {
+            $(this).toggle(
+              $(this).text().toLowerCase().indexOf(searchValue) > -1
+            );
+          });
+        }
+
+        // Обработчик события для поля ввода поиска
+        $("#searchInput").on("input", function () {
+          filterTable();
+        });
         $.get("/items", function (data) {
           var items = data.items;
           var tableBody = $("#itemsTable tbody");
