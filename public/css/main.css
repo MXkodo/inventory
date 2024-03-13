@@ -69,6 +69,9 @@ li ul {
   margin-top: 0.3vh;
   margin-right: 2vw;
   margin-left: 2vw;
+  position: relative;
+  right: 20vh;
+ 
 }
 .helper li {
   /* border: solid; */
@@ -117,10 +120,12 @@ input {
     text-align: center;
     background-image: url(../img/poisk.svg);
     background-repeat: no-repeat;
-    width: 10vw;
+    width: 16vw;
     height: auto;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     background: rgba(255, 255, 255, 0.06);
+    position: relative;
+    right: 50vh;
   }
 
   input::placeholder {
@@ -206,6 +211,7 @@ input {
   }
   .pk-2 {
     margin-top: 0.5vh;
+    margin-left: 9vh;
     height: 4.3vh;
     width: auto;
   }
@@ -227,12 +233,27 @@ input {
     filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));;
   }*/
 
+  .line-button-1{
+    position: relative;
+    margin-left: 7.5vh;
+    width: auto;
+  }
+
+  .line-button-2{
+    position: relative;
+    margin-left: 9vh;
+    width: auto;
+  }
+
   .jurnal-1 {
-    padding-right: 3vw;
+    position: relative;
+    padding-right: 0.3vw;
   }
 
   .jurnal-2 {
+    position: relative;
     margin-top: 0.5vh;
+    margin-left: 9vh;
     height: 3.2vh;
     width: auto;
   }
@@ -244,12 +265,15 @@ input {
   }*/
 
   .archiv-1 {
-    padding-right: 3vw;
+    position: relative;
+    padding-right: 0.3vw;
   }
 
-  .archi-2 {
+  .archiv-2 {
+    position: relative;
     margin-top: 0.5vh;
-    height: 3.2vh;
+    margin-left: 8vh;
+    height: 2.7vh;
     width: auto;
   }
 
