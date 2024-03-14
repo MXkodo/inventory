@@ -18,10 +18,37 @@
         <div class="border">
             <h1>Войдите, чтобы продолжить</h1>
             <form action="/login" method="post">
-                <input type="text" name="login" placeholder="Login">
-                <input type="password" name="password" placeholder="Password">
+                <input type="text" name="UserName" placeholder="Login">
+                <input type="password" name="Password" placeholder="Password">
                 <button type="submit">Log in</button>
                 <p class="error">
+                <script>
+                document.querySelector('form').addEventListener('submit', function(event) {
+                    event.preventDefault();
+
+                    var UserName = document.querySelector('input[name="UserName"]').value;
+                    var Password = document.querySelector('input[name="Password"]').value;
+
+                    fetch('/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ UserName: UserName, Password: Password }),
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            localStorage.setItem('fio', data.fio);
+                            window.location.href = '/'; // Перенаправление на главную страницу после успешной авторизации
+                        } else {
+                            document.querySelector('.error').textContent = data.error;
+                        }
+                    })
+                    .catch(error => console.error('Ошибка:', error));
+
+                });
+                </script>
             </div>
         </div>
     </p>
