@@ -18,15 +18,15 @@
       <p>Название</p>
       <input type="text" name="name" required />
       <p>Хранение</p>
-     <!--Выпадающий список для Склада-->
+      <!--Выпадающий список для Склада-->
 
       <select name="storage" required>
         <option value="">Выберите склад</option>
-        <option value="option1">гл.407 УИСИТ</option>
-        <option value="option2">Склад СО</option>
-        <option value="option3">Склад ВСИС</option>
-        <option value="option4">Склад ИБ</option>
-       </select>
+        <option value="гл.407 УИСИТ">гл.407 УИСИТ</option>
+        <option value="Склад СО">Склад СО</option>
+        <option value="Склад ВСИС">Склад ВСИС</option>
+        <option value="Склад ИБ">Склад ИБ</option>
+      </select>
 
       <p>Бюджет</p>
       <!--Выпадающий список для Бюджет-->
@@ -34,24 +34,23 @@
         <option value="">Выбрать</option>
         <option value="option1">Да</option>
         <option value="option2">Нет</option>
-       </select>
-      
+      </select>
+
       <p>Описание</p>
       <textarea name="desc"></textarea>
       <input type="hidden" name="date" />
       <button type="submit">Сохранить</button>
     </form>
     <div id="qrCodeContainer"></div>
+    <button id="downloadQR">Скачать QR-код</button>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        var urlParams = new URLSearchParams(window.location.search);
-        var id = urlParams.get("id");
-        var url = "http://localhost:8080/public/templates/edit.html?id=" + id;
+        var currentUrl = window.location.href;
 
         var qrcode = new QRCode(document.getElementById("qrCodeContainer"), {
-          text: url,
-          width: 256,
-          height: 256,
+          text: currentUrl,
+          width: 128,
+          height: 128,
           colorDark: "#000000",
           colorLight: "#ffffff",
           correctLevel: QRCode.CorrectLevel.H,
@@ -63,10 +62,13 @@
           document.querySelector('input[name="invnumber"]').value =
             item.invnumber;
           document.querySelector('input[name="name"]').value = item.name;
-          document.querySelector('input[name="storage"]').value = item.storage;
+          // Use the correct select element for storage
+          document.querySelector('select[name="storage"]').value = item.storage;
           document.querySelector('textarea[name="desc"]').value = item.desc;
-          document.querySelector('input[name="budget"]').checked = item.budget;
-          console.log(item.date);
+          // Use the correct select element for budget
+          document.querySelector('select[name="budget"]').value = item.budget
+            ? "option1"
+            : "option2";
           document.querySelector('input[name="date"]').value = item.date;
         }
 
@@ -79,7 +81,7 @@
             var data = {};
             formData.forEach(function (value, key) {
               if (key === "budget") {
-                data[key] = value === "on";
+                data[key] = value === "option1";
               } else {
                 data[key] = value;
               }
@@ -109,6 +111,35 @@
               .catch((error) => {
                 console.error("Ошибка при отправке данных:", error);
               });
+          });
+
+        document
+          .getElementById("downloadQR")
+          .addEventListener("click", function () {
+            var canvas = document.createElement("canvas");
+            var ctx = canvas.getContext("2d");
+
+            canvas.width = 256;
+            canvas.height = 256;
+
+            var image = new Image();
+            image.src = qrcode._oDrawing._elImage.src;
+            image.onload = function () {
+              ctx.drawImage(image, 0, 0, 128, 128);
+
+              ctx.font = "16px Arial";
+              ctx.textAlign = "center";
+              ctx.fillText(item.invnumber, canvas.width / 3, 140);
+
+              var downloadLink = document.createElement("a");
+              downloadLink.href = canvas.toDataURL();
+              downloadLink.download = item.invnumber + ".png";
+
+              document.body.appendChild(downloadLink);
+              downloadLink.click();
+
+              document.body.removeChild(downloadLink);
+            };
           });
       });
     </script>

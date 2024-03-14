@@ -14,7 +14,7 @@ type CreateItemInput struct {
 	Name      string `json:"name"  binding:"required"`
 	Storage   string `json:"storage"  binding:"required"`
 	Date      string `json:"date"`
-	Budget    bool   `json:"budget"  binding:"required"`
+	Budget    bool   `json:"budget"`
 	Desc      string `json:"desc"`
 }
 type UpdateItemInput struct {

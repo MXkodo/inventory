@@ -71,7 +71,6 @@ li ul {
   margin-left: 1vw;
   position: absolute;
   right: 20vh;
- 
 }
 .helper li {
   display: flex;
@@ -109,7 +108,7 @@ li img {
   width: 1vh; /* Занимает всю ширину контейнера */
   height: auto; /* Занимает всю высоту контейнера */
   object-fit: cover; /* Масштабирует изображение, сохраняя пропорции */
- }
+}
 
 /*------------------------------------------------------------------
 -------------------------------------------------------*/
@@ -182,7 +181,6 @@ input {
     width: auto;
     position: relative;
     right: 1vh;
-    
   }
   .profile {
     height: 6vh;
@@ -210,8 +208,7 @@ input {
       rgba(111, 120, 186, 0.99) 72.99%,
       #9299d1 100%
     );
-    width: 100%; 
-    
+    width: 100%;
   }
   .head {
     height: 8vh;
@@ -222,8 +219,6 @@ input {
   /* .test{
     border: solid;
   } */
-
-  
 
   .pk {
     display: flex;
@@ -257,7 +252,7 @@ input {
     filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));;
   }*/
 
-  .page-pk{
+  .page-pk {
     position: absolute;
     /*margin-top: 10px;*/
     top: 0%;
@@ -268,15 +263,13 @@ input {
     background: #7c85d1;
   }
 
-  .line-button-1{
+  .line-button-1 {
     display: flex;
     position: absolute;
     margin-left: 7.5vh;
     width: auto;
     height: auto;
   }
-
-  
 
   .jurnal-1 {
     display: flex;
@@ -292,7 +285,7 @@ input {
     width: auto;
   }
 
-  .line-button-2{
+  .line-button-2 {
     display: flex;
     position: absolute;
     margin-left: 50vh;
@@ -385,7 +378,7 @@ input {
     border-radius: 15px;
     font-family: "Light";
     border-collapse: collapse;
-    border-color: #53547A;
+    border-color: #53547a;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
   }
   thead th {
@@ -413,12 +406,12 @@ input {
     text-align: center;
   }
   tr:hover {
-    background-color: rgba(124, 133, 209, 0.2); 
+    background-color: rgba(124, 133, 209, 0.2);
   }
   .second::-webkit-scrollbar {
     width: auto;
   }
- /* .second::-webkit-scrollbar-track {
+  /* .second::-webkit-scrollbar-track {
     border: #D9D9D9;
     background: rgba(217, 217, 217, 0.5);
     border-radius: 5px;
@@ -429,7 +422,7 @@ input {
   }
   .second::-webkit-scrollbar-thumb:hover {
     border: 2px solid #ccc4c5; /* Граница ползунка */
-   }
+  }
 }
 /*----адаптивка для мобилки---------------------------------------------------------------------------------------------------*/
 @media (hover: none) and (pointer: coarse) {
@@ -488,10 +481,10 @@ input {
     height: auto;
    } */
 
-   * {
+  * {
     margin: 0;
     padding: 0;
-}
+  }
 
   .hat {
     height: 7vh;
@@ -553,7 +546,6 @@ input {
     width: auto;
   }
   .pk-1 {
-    
     padding-right: 0.3vw;
   }
 
@@ -567,7 +559,7 @@ input {
     font-family: "Bold";
   }
 
-  .page-pk{
+  .page-pk {
     position: absolute;
     /*margin-top: 10px;*/
     top: 0%;
@@ -578,14 +570,12 @@ input {
     background: #7c85d1;
   }
 
-  .line-button-1{
+  .line-button-1 {
     position: absolute;
     margin-right: 1vh;
     width: auto;
     height: 3.5%;
   }
-
-  
 
   .jurnal-1 {
     position: relative;
@@ -600,12 +590,11 @@ input {
     width: auto;
   }
 
-  .line-button-2{
+  .line-button-2 {
     position: absolute;
     margin-left: 1vh;
     width: auto;
     height: 3.5%;
-
   }
 
   /*.archiv{
@@ -641,7 +630,6 @@ input {
     width: auto;
     position: relative;
     right: 1vh;
-    
   }
   table {
     overflow-y: scroll;
@@ -712,7 +700,7 @@ input {
 
   tr:hover {
     /*background-color: #7C85D1;*/
-    background-color: rgba(124, 133, 209, 0.2); 
+    background-color: rgba(124, 133, 209, 0.2);
   }
 
   .second::-webkit-scrollbar {
