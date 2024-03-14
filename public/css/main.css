@@ -263,6 +263,29 @@ input {
     background: #7c85d1;
   }
 
+  .page-jurnal{
+    position: absolute;
+    /*margin-top: 10px;*/
+    top: -60%;
+    left: 50%;
+    border-radius: 14px;
+    width: 165%;
+    height: 217%;
+    background: #7c85d1;
+  }
+
+  .page-archiv{
+    position: absolute;
+    /*margin-top: 10px;*/
+    top: -60%;
+    left: 51%;
+    border-radius: 14px;
+    width: 130%;
+    height: 217%;
+    background: #7c85d1;
+  }
+  
+
   .line-button-1 {
     display: flex;
     position: absolute;
@@ -279,6 +302,7 @@ input {
 
   .jurnal-2 {
     position: relative;
+    z-index: 1000;
     margin-top: 0.5vh;
     margin-left: 9vh;
     height: 3.2vh;
@@ -306,6 +330,7 @@ input {
 
   .archiv-2 {
     position: relative;
+    z-index: 1000;
     margin-top: 0.5vh;
     margin-left: 12vh;
     height: 2.7vh;
@@ -408,6 +433,9 @@ input {
   tr:hover {
     background-color: rgba(124, 133, 209, 0.2);
   }
+  tr:active {
+    background-color: rgba(124, 133, 209, 0.5);
+}
   .second::-webkit-scrollbar {
     width: auto;
   }
@@ -702,6 +730,9 @@ input {
     /*background-color: #7C85D1;*/
     background-color: rgba(124, 133, 209, 0.2);
   }
+  tr:active {
+    background-color: rgba(124, 133, 209, 0.5);
+}
 
   .second::-webkit-scrollbar {
     width: auto;
