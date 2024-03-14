@@ -28,23 +28,21 @@
 
               <!--Выпадающий список для Склада-->
 
-             <select name="storage" required>
-              <option value="">Выберите склад</option>
-              <option value="option1">гл.407 УИСИТ</option>
-              <option value="option2">Склад СО</option>
-              <option value="option3">Склад ВСИС</option>
-              <option value="option4">Склад ИБ</option>
-             </select>
+              <select name="storage" required>
+                <option value="">Выберите склад</option>
+                <option value="гл.407 УИСИТ">гл.407 УИСИТ</option>
+                <option value="Склад СО">Склад СО</option>
+                <option value="Склад ВСИС">Склад ВСИС</option>
+                <option value="Склад ИБ">Склад ИБ</option>
+              </select>
 
               <p>Бюджет</p>
 
-             
-
-             <select name="budget" required>
-              <option value="">Выбрать</option>
-              <option value="option1">Да</option>
-              <option value="option2">Нет</option>
-             </select>
+              <select name="budget" required>
+                <option value="">Выбрать</option>
+                <option value="option1">Да</option>
+                <option value="option2">Нет</option>
+              </select>
 
               <p>Описание</p>
               <textarea name="desc"></textarea>
@@ -59,8 +57,11 @@
 
                   const formData = new FormData(event.target);
                   const data = Object.fromEntries(formData.entries());
-                  data.budget = data.budget === "on";
+                  console.log("data.budget:", data.budget);
+                  data.budget = data.budget === "option1";
+                  console.log("data.budget:", data.budget);
                   const jsonData = JSON.stringify(data);
+                  console.log(jsonData);
 
                   fetch("/items", {
                     method: "POST",
@@ -69,7 +70,14 @@
                     },
                     body: jsonData,
                   })
-                    .then((response) => response.json())
+                    .then((response) => {
+                      if (!response.ok) {
+                        throw new Error(
+                          "Ошибка при отправке данных: " + response.statusText
+                        );
+                      }
+                      return response.json();
+                    })
                     .then((data) => console.log(data))
                     .catch((error) => console.error("Ошибка:", error));
                 });
@@ -86,16 +94,12 @@
           </div>
         </div>
 
-       
-
         <div class="head test pk">
           <div class="box-2 test">
             <a href="#openModal"
               ><img class="add" src="/public/img/add.png"
             /></a>
           </div>
-
-          
 
           <div class="pk-1">
             <img class="pk-2" src="/public/img/pk.svg" />
@@ -106,7 +110,6 @@
               <p>Список <br />компьютеров</p>
             </article>
           </div>
-          
 
           <img class="line-button-1" src="/public/img/line-button.svg" />
 
@@ -173,7 +176,11 @@
                   </script>
 
                   <li class="login username"></li>
-                  <li><a class="exit" href="#" onclick="logout()"><img src="/public/img/logout.png">Выйти</a></li>
+                  <li>
+                    <a class="exit" href="#" onclick="logout()"
+                      ><img src="/public/img/logout.png" />Выйти</a
+                    >
+                  </li>
                 </ul>
               </li>
             </ul>
@@ -194,349 +201,349 @@
           </tr>
         </thead>
         <tbody>
-<!---------- Для теста ------------------------------------------->
-        <tr>
-          <th>M00314</th>
-          <th>Камера</th>
-          <th>7к</th>
-          <th>13.03.2024</th>
-          <th>Бюджет</th>
-          <th>В архив</th>
-        </tr>
-      
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-    
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-    
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-   
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-   
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-      
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-    
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-    
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-    
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-      
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-    
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
+          <!---------- Для теста ------------------------------------------->
+          <tr>
+            <th>M00314</th>
+            <th>Камера</th>
+            <th>7к</th>
+            <th>13.03.2024</th>
+            <th>Бюджет</th>
+            <th>В архив</th>
+          </tr>
 
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-    
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
 
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-    
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
 
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-    
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
 
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-    
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-     
-      <tr>
-        <td>M00315</td>
-        <td>Телефон</td>
-        <td>5к</td>
-        <td>14.03.2024</td>
-        <td>Бюджет</td>
-        <td>В архив</td>
-      </tr>
-<!---------- Для теста ------------------------------------------->
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+
+          <tr>
+            <td>M00315</td>
+            <td>Телефон</td>
+            <td>5к</td>
+            <td>14.03.2024</td>
+            <td>Бюджет</td>
+            <td>В архив</td>
+          </tr>
+          <!---------- Для теста ------------------------------------------->
         </tbody>
       </table>
     </div>

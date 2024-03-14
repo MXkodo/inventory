@@ -18,15 +18,15 @@
       <p>Название</p>
       <input type="text" name="name" required />
       <p>Хранение</p>
-     <!--Выпадающий список для Склада-->
+      <!--Выпадающий список для Склада-->
 
       <select name="storage" required>
         <option value="">Выберите склад</option>
-        <option value="option1">гл.407 УИСИТ</option>
-        <option value="option2">Склад СО</option>
-        <option value="option3">Склад ВСИС</option>
-        <option value="option4">Склад ИБ</option>
-       </select>
+        <option value="гл.407 УИСИТ">гл.407 УИСИТ</option>
+        <option value="Склад СО">Склад СО</option>
+        <option value="Склад ВСИС">Склад ВСИС</option>
+        <option value="Склад ИБ">Склад ИБ</option>
+      </select>
 
       <p>Бюджет</p>
       <!--Выпадающий список для Бюджет-->
@@ -34,8 +34,8 @@
         <option value="">Выбрать</option>
         <option value="option1">Да</option>
         <option value="option2">Нет</option>
-       </select>
-      
+      </select>
+
       <p>Описание</p>
       <textarea name="desc"></textarea>
       <input type="hidden" name="date" />
@@ -62,10 +62,13 @@
           document.querySelector('input[name="invnumber"]').value =
             item.invnumber;
           document.querySelector('input[name="name"]').value = item.name;
-          document.querySelector('input[name="storage"]').value = item.storage;
+          // Use the correct select element for storage
+          document.querySelector('select[name="storage"]').value = item.storage;
           document.querySelector('textarea[name="desc"]').value = item.desc;
-          document.querySelector('input[name="budget"]').checked = item.budget;
-          console.log(item.date);
+          // Use the correct select element for budget
+          document.querySelector('select[name="budget"]').value = item.budget
+            ? "option1"
+            : "option2";
           document.querySelector('input[name="date"]').value = item.date;
         }
 
@@ -78,7 +81,7 @@
             var data = {};
             formData.forEach(function (value, key) {
               if (key === "budget") {
-                data[key] = value === "on";
+                data[key] = value === "option1";
               } else {
                 data[key] = value;
               }
