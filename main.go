@@ -50,5 +50,6 @@ func main() {
 	//Audit
 	route.POST("/audit/:id",middleware.RequireAuth, controllers.InsertAudit) 
 	route.GET("/audit",middleware.RequireAuth, controllers.GetAllAuditItems)
+	route.POST("/audit/:id/return", middleware.RequireAuth, controllers.ReturnItem)
 	route.Run()
 }

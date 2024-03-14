@@ -150,5 +150,46 @@ func InsertAudit(context *gin.Context) {
 	// Удаляем запись из таблицы item
 	initial.DB.Delete(&item)
 
-	context.JSON(http.StatusOK, gin.H{"message": "Запись успешно сохранена в audit и удалена из item"})
+	context.JSON(http.StatusOK, gin.H{})
+}
+// POST /audit/:id/return
+// Возврат записи из таблицы audit в таблицу item
+func ReturnItem(context *gin.Context) {
+    // Извлекаем ID из параметров URL
+    id := context.Param("id")
+
+    // Проверяем, существует ли элемент в таблице audit
+    var auditItem models.AuditItem
+    if err := initial.DB.Where("id = ?", id).First(&auditItem).Error; err != nil {
+        context.JSON(http.StatusBadRequest, gin.H{"error": "Элемент не найден в audit"})
+        return
+    }
+
+    // Создаем запись для возврата в таблицу item
+    item := models.Item{
+        InvNumber: auditItem.InvNumber,
+        Name:      auditItem.Name,
+        Storage:   auditItem.Storage,
+        Date:      auditItem.Date,
+        Budget:    auditItem.Budget,
+        Desc:      auditItem.Desc,
+    }
+
+    // Сохраняем запись в таблице item
+    result := initial.DB.Create(&item)
+    if result.Error != nil {
+        context.JSON(http.StatusInternalServerError, gin.H{"error": "Ошибка при сохранении в item"})
+        return
+    }
+
+    // Проверяем, была ли запись успешно сохранена
+    if result.RowsAffected == 0 {
+        context.JSON(http.StatusInternalServerError, gin.H{"error": "Запись не была сохранена в item"})
+        return
+    }
+
+    // Удаляем запись из таблицы audit
+    initial.DB.Delete(&auditItem)
+
+    context.JSON(http.StatusOK, gin.H{"message": "Запись успешно возвращена в item и удалена из audit"})
 }
