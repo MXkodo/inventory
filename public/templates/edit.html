@@ -27,6 +27,7 @@
       <button type="submit">Сохранить</button>
     </form>
     <div id="qrCodeContainer"></div>
+    <button id="downloadQR">Скачать QR-код</button>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var currentUrl = window.location.href;
@@ -92,6 +93,35 @@
               .catch((error) => {
                 console.error("Ошибка при отправке данных:", error);
               });
+          });
+
+        document
+          .getElementById("downloadQR")
+          .addEventListener("click", function () {
+            var canvas = document.createElement("canvas");
+            var ctx = canvas.getContext("2d");
+
+            canvas.width = 256;
+            canvas.height = 256;
+
+            var image = new Image();
+            image.src = qrcode._oDrawing._elImage.src;
+            image.onload = function () {
+              ctx.drawImage(image, 0, 0, 128, 128);
+
+              ctx.font = "16px Arial";
+              ctx.textAlign = "center";
+              ctx.fillText(item.invnumber, canvas.width / 3, 140);
+
+              var downloadLink = document.createElement("a");
+              downloadLink.href = canvas.toDataURL();
+              downloadLink.download = item.invnumber + ".png";
+
+              document.body.appendChild(downloadLink);
+              downloadLink.click();
+
+              document.body.removeChild(downloadLink);
+            };
           });
       });
     </script>
