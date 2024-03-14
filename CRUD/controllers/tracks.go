@@ -25,7 +25,7 @@ type UpdateItemInput struct {
 	Budget    bool   `json:"budget"`
 	Desc      string `json:"desc"`
 }
-
+//-------------------------------------Items-----------------------------------------//
 // GET /items
 // Получаем список всех позиций
 func GetAllItems(context *gin.Context) {
@@ -98,4 +98,57 @@ func UpdateItem(context *gin.Context) {
 
    context.JSON(http.StatusOK, gin.H{"message": "Данные успешно обновлены"})
 
+}
+
+//----------------------------------------Audit-----------------------------------------------//
+
+// GET /audit
+// Получение всех записей из таблицы audit
+func GetAllAuditItems(context *gin.Context) {
+	var auditItems []models.AuditItem
+	initial.DB.Find(&auditItems)
+	context.JSON(http.StatusOK, gin.H{"auditItems": auditItems})
+}
+
+// POST /audit/:id
+// Вставка записи в таблицу audit и удаление из таблицы item
+func InsertAudit(context *gin.Context) {
+	// Извлекаем ID из параметров URL
+	id := context.Param("id")
+
+	// Проверяем, существует ли элемент в таблице item
+	var item models.Item
+	if err := initial.DB.Where("id = ?", id).First(&item).Error; err != nil {
+		context.JSON(http.StatusBadRequest, gin.H{"error": "Элемент не найден"})
+		return
+	}
+
+	// Создаем запись для вставки в audit
+	auditItem := models.AuditItem{
+		InvNumber: item.InvNumber,
+		Name:      item.Name,
+		Storage:   item.Storage,
+		Date:      item.Date,
+		Budget:    item.Budget,
+		Desc:      item.Desc,
+		DeletedAt: time.Now(),
+	}
+
+	// Сохраняем запись в таблице audit
+	result := initial.DB.Create(&auditItem)
+	if result.Error != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{"error": "Ошибка при сохранении в audit"})
+		return
+	}
+
+	// Проверяем, была ли запись успешно сохранена
+	if result.RowsAffected == 0 {
+		context.JSON(http.StatusInternalServerError, gin.H{"error": "Запись не была сохранена в audit"})
+		return
+	}
+
+	// Удаляем запись из таблицы item
+	initial.DB.Delete(&item)
+
+	context.JSON(http.StatusOK, gin.H{"message": "Запись успешно сохранена в audit и удалена из item"})
 }

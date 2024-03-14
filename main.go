@@ -13,6 +13,7 @@ func init() {
 	initializers.LoadEnvVariables()
 	initializers.ConnectToDb()
 	initializers.SyncAuth()
+	initializers.SyncAudit()
 }
 
 func main() {
@@ -45,5 +46,9 @@ func main() {
 		items.GET("/:id", controllers.GetItem)
 		items.PATCH("/:id", controllers.UpdateItem)
 	}
+	
+	//Audit
+	route.POST("/audit/:id",middleware.RequireAuth, controllers.InsertAudit) 
+	route.GET("/audit",middleware.RequireAuth, controllers.GetAllAuditItems)
 	route.Run()
 }
