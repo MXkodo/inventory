@@ -18,9 +18,24 @@
       <p>Название</p>
       <input type="text" name="name" required />
       <p>Хранение</p>
-      <input type="text" name="storage" required />
+     <!--Выпадающий список для Склада-->
+
+      <select name="storage" required>
+        <option value="">Выберите склад</option>
+        <option value="option1">гл.407 УИСИТ</option>
+        <option value="option2">Склад СО</option>
+        <option value="option3">Склад ВСИС</option>
+        <option value="option4">Склад ИБ</option>
+       </select>
+
       <p>Бюджет</p>
-      <input type="checkbox" name="budget" required />
+      <!--Выпадающий список для Бюджет-->
+      <select name="budget" required>
+        <option value="">Выбрать</option>
+        <option value="option1">Да</option>
+        <option value="option2">Нет</option>
+       </select>
+      
       <p>Описание</p>
       <textarea name="desc"></textarea>
       <input type="hidden" name="date" />
