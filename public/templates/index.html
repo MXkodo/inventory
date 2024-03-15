@@ -46,7 +46,8 @@
 
               <p>Описание</p>
               <textarea name="desc"></textarea>
-              <button type="submit">Сохранить</button>
+              <button class="archiv-button" type="submit">В архив</button>
+              <!--Поменять Феду type-->
             </form>
 
             <script>
@@ -100,30 +101,24 @@
               ><img class="add" src="/public/img/add.png"
             /></a>
           </div>
-          
 
           <div class="pk-1">
-              <img class="pk-2" src="/public/img/pk.svg" />
-             
-    
+            <img class="pk-2" src="/public/img/pk.svg" />
           </div>
           <div class="pk-1">
+            <article>
             <article>
               <p>Список <br />компьютеров</p>
             </article>
           </div>
 
-
-          
-          
-
           <img class="line-button-1" src="/public/img/line-button.svg" />
 
           <div class="jurnal-1">
             <img class="jurnal-2" src="/public/img/jurnal.svg" />
-            
           </div>
           <div>
+            <article>
             <article>
               <p>Журнал <br />событий</p>
             </article>
@@ -133,10 +128,10 @@
 
           <div class="archiv-1">
             <img class="archiv-2" src="/public/img/archiv.svg" />
-           
           </div>
           <div class="archiv-1"><article>Архив</article></div>
         </div>
+
         <div class="head test">
           <div class="box-3 test">
             <input
@@ -148,7 +143,6 @@
               src="/public/img/poisk.svg"
             />
           </div>
-          
           <div class="profile">
             <ul>
               <li>
@@ -219,6 +213,7 @@
       $(document).ready(function () {
         // Функция для обновления таблицы
         function updateItemsTable() {
+          //добавление подложки к пк1
           $.get("/items", function (data) {
             var items = data.items;
             var tableBody = $("#itemsTable tbody");
@@ -241,11 +236,12 @@
                 // Отправляем POST-запрос на сервер
                 $.post("/audit/" + item.id, function (response) {
                   if (response.message) {
-                    alert(response.message);
+                    //alert(response.message);
                     // Обновляем таблицу после успешного перемещения в архив
                     updateItemsTable();
                   } else {
-                    alert("Ошибка при перемещении в архив");
+                    updateItemsTable();
+                    console.log("Ошибка при перемещении в архив");
                   }
                 });
               });
@@ -261,37 +257,43 @@
 
         // Добавление обработчика события на элемент с классом "pk-1"
         $(".pk-1").on("click", function () {
+          //очистка всех подложек
           updateItemsTable();
         });
 
         // Обработчик события для клика по иконке "Архив"
+<<<<<<< HEAD
         
         $(".archiv-1").on("click", function () {
+=======
+        function UpdateAuditTable() {
+>>>>>>> b75417d829a05a4bd6599d4777286bcd0c31c4e4
           $.get("/audit", function (data) {
             var auditItems = data.auditItems;
-            console.log(data.item.id);
+
             var tableBody = $("#itemsTable tbody");
             tableBody.empty();
 
             auditItems.forEach(function (item) {
-              var row = $("<tr>");
-              row.append($("<td>").text(item.invnumber));
-              row.append($("<td>").text(item.name));
-              row.append($("<td>").text(item.storage));
-              row.append($("<td>").text(item.date));
-              row.append($("<td>").text(item.budget ? "Да" : "Нет"));
-              row.append(
-                $("<td>").append(
-                  $(
-                    '<button class="return-button archiv-button" type="button" data-id="' +
-                      item.id +
-                      '">Из архива</button>'
+              if (item && item.ID) {
+                var row = $("<tr>");
+                row.append($("<td>").text(item.invnumber));
+                row.append($("<td>").text(item.name));
+                row.append($("<td>").text(item.storage));
+                row.append($("<td>").text(item.date));
+                row.append($("<td>").text(item.budget ? "Да" : "Нет"));
+                row.append(
+                  $("<td>").append(
+                    $(
+                      '<button class="return-button archiv-button" type="button" data-id="' +
+                        item.ID +
+                        '">Из архива</button>'
+                    )
                   )
-                )
-              );
-              console.log(item.id);
-              row.attr("data-item", JSON.stringify(item));
+                );
+                row.attr("data-item", JSON.stringify(item));
 
+<<<<<<< HEAD
               tableBody.append(row);
 
               
@@ -304,25 +306,38 @@
         });
     
    
+=======
+                tableBody.append(row);
+              } else {
+                console.error("Ошибка: item не содержит свойства ID");
+              }
+            });
+          });
+        }
+
+        // Вызов функции при клике на иконку "Архив"
+        $(".archiv-1").on("click", function () {
+          UpdateAuditTable();
+        });
+
+>>>>>>> b75417d829a05a4bd6599d4777286bcd0c31c4e4
         // Обработчик события для кнопки "Из архива"
         $("#itemsTable").on("click", ".return-button", function (event) {
-          event.stopPropagation(); // Предотвращаем всплытие события
-          var itemId = $(this).data("id"); // Извлекаем ID из атрибута data-id кнопки
-          console.log("Item ID:", itemId);
+          event.stopPropagation();
+          var itemId = $(this).data("id");
           if (!itemId) {
             console.error("ID элемента не определено");
-            return; // Прерываем выполнение, если ID не определено
+            return;
           }
           $.ajax({
             url: "/audit/" + itemId + "/return",
             type: "POST",
             success: function (response) {
               if (response.message) {
-                alert(response.message);
                 // Обновляем таблицу после успешного возврата из архива
-                updateItemsTable();
+                UpdateAuditTable();
               } else {
-                alert("Ошибка при возврате из архива");
+                console.error("Ошибка при возврате из архива");
               }
             },
             error: function (error) {
@@ -330,6 +345,7 @@
             },
           });
         });
+
         // Обработчик события для поля ввода поиска
         $("#searchInput").on("input", function () {
           var searchValue = $(this).val().toLowerCase();
