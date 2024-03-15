@@ -265,6 +265,7 @@
         });
 
         // Обработчик события для клика по иконке "Архив"
+        
         $(".archiv-1").on("click", function () {
           $.get("/audit", function (data) {
             var auditItems = data.auditItems;
@@ -292,9 +293,17 @@
               row.attr("data-item", JSON.stringify(item));
 
               tableBody.append(row);
+
+              
+
+   
             });
           });
+          $(".page-archiv").show();
+          $(".page-pk, .page-jurnal").hide();
         });
+    
+   
         // Обработчик события для кнопки "Из архива"
         $("#itemsTable").on("click", ".return-button", function (event) {
           event.stopPropagation(); // Предотвращаем всплытие события
