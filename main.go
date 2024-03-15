@@ -14,6 +14,7 @@ func init() {
 	initializers.ConnectToDb()
 	initializers.SyncAuth()
 	initializers.SyncAudit()
+	initializers.SyncChangeLog()
 }
 
 func main() {
