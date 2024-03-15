@@ -7,6 +7,7 @@ import (
 	initial "github.com/MXkodo/inventory/CRUD/initializers"
 	"github.com/MXkodo/inventory/CRUD/models"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 )
 
 type CreateItemInput struct {
@@ -24,6 +25,15 @@ type UpdateItemInput struct {
 	Date      string `json:"date"`
 	Budget    bool   `json:"budget"`
 	Desc      string `json:"desc"`
+}
+type ChangeLog struct {
+	ID        uint      `gorm:"primary_key"`
+	InvNumber string    `json:"invnumber"`
+	Name      string    `json:"name"`
+	Date      string 	`json:"date"`
+	Desc      string    `json:"desc"`
+	DescNew   string `json:"descnew"`
+	Action    string    `json:"action"`
 }
 //-------------------------------------Items-----------------------------------------//
 // GET /items
@@ -96,6 +106,12 @@ func UpdateItem(context *gin.Context) {
 
 	initial.DB.Model(&item).Updates(updateFields)
 
+    changes := make(map[string]interface{})
+    for key, value := range updateFields {
+        changes[key] = value
+    }
+
+    LogChange(initial.DB, item, "update", changes)
    context.JSON(http.StatusOK, gin.H{"message": "Данные успешно обновлены"})
 
 }
@@ -193,3 +209,24 @@ func ReturnItem(context *gin.Context) {
 
     context.JSON(http.StatusOK, gin.H{"message": "Запись успешно возвращена в item и удалена из audit"})
 }
+
+//------------------------------------------ChangeLog--------------------------------------------------//
+
+func GetChangeLog(context *gin.Context) {
+    var changeLogs []models.ChangeLog
+    initial.DB.Find(&changeLogs)
+    context.JSON(http.StatusOK, gin.H{"changeLogs": changeLogs})
+}
+
+func LogChange(db *gorm.DB, item models.Item, action string, changes map[string]interface{}) {
+    changeLog := ChangeLog{
+        InvNumber: item.InvNumber,
+        Name:      item.Name,
+        Date:      item.Date,
+        Desc:      item.Desc,
+        DescNew:   changes["Desc"].(string), 
+        Action:    action,
+    }
+    db.Create(&changeLog)
+}
+
