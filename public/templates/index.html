@@ -46,8 +46,7 @@
 
               <p>Описание</p>
               <textarea name="desc"></textarea>
-              <button class="archiv-button" type="submit">В архив</button>
-              <!--Поменять Феду type-->
+              <button type="submit">Сохранить</button>
             </form>
 
             <script>
@@ -101,24 +100,31 @@
               ><img class="add" src="/public/img/add.png"
             /></a>
           </div>
+          
 
           <div class="pk-1">
-            <img class="pk-2" src="/public/img/pk.svg" />
-            <div class="page-pk"></div>
+              <img class="pk-2" src="/public/img/pk.svg" />
+              <div class="page-pk" style="display: none;"></div>
+    
           </div>
           <div class="pk-1">
-            <article>
+            <article onclick="showArchiv()">
               <p>Список <br />компьютеров</p>
             </article>
           </div>
+
+
+          
+          
 
           <img class="line-button-1" src="/public/img/line-button.svg" />
 
           <div class="jurnal-1">
             <img class="jurnal-2" src="/public/img/jurnal.svg" />
+            <div class="page-jurnal" style="display: none;"></div>
           </div>
           <div>
-            <article>
+            <article onclick="showArchiv()">
               <p>Журнал <br />событий</p>
             </article>
           </div>
@@ -127,10 +133,38 @@
 
           <div class="archiv-1">
             <img class="archiv-2" src="/public/img/archiv.svg" />
+            <div class="page-archiv" style="display: none;"></div>
           </div>
           <div class="archiv-1"><article>Архив</article></div>
         </div>
+<!--Скрипт на появление подкладки страницы при нажатии на элемент-->
+         <script>
+          function showArchiv() {
+             document.querySelector('.page-archiv').style.display = 'block';
+          }
+         
+          // Добавляем обработчик событий click к элементу .archiv-1
+          document.querySelector('.archiv-1').addEventListener('click', showArchiv);
+         </script>
 
+         <script>
+          function showArchiv() {
+             document.querySelector('.page-jurnal').style.display = 'block';
+          }
+         
+          // Добавляем обработчик событий click к элементу .archiv-1
+          document.querySelector('.jurnal-1').addEventListener('click', showArchiv);
+         </script>
+
+         <script>
+          function showArchiv() {
+             document.querySelector('.page-pk').style.display = 'block';
+          }
+         
+          // Добавляем обработчик событий click к элементу .archiv-1
+          document.querySelector('.pk-1').addEventListener('click', showArchiv);
+         </script>
+<!--Скрипт на появление подкладки страницы при нажатии на элемент-->
         <div class="head test">
           <div class="box-3 test">
             <input
@@ -142,6 +176,7 @@
               src="/public/img/poisk.svg"
             />
           </div>
+          
           <div class="profile">
             <ul>
               <li>
