@@ -262,12 +262,7 @@
         });
 
         // Обработчик события для клика по иконке "Архив"
-<<<<<<< HEAD
-        
-        $(".archiv-1").on("click", function () {
-=======
         function UpdateAuditTable() {
->>>>>>> b75417d829a05a4bd6599d4777286bcd0c31c4e4
           $.get("/audit", function (data) {
             var auditItems = data.auditItems;
 
@@ -293,20 +288,6 @@
                 );
                 row.attr("data-item", JSON.stringify(item));
 
-<<<<<<< HEAD
-              tableBody.append(row);
-
-              
-
-   
-            });
-          });
-          $(".page-archiv").show();
-          $(".page-pk, .page-jurnal").hide();
-        });
-    
-   
-=======
                 tableBody.append(row);
               } else {
                 console.error("Ошибка: item не содержит свойства ID");
@@ -320,7 +301,6 @@
           UpdateAuditTable();
         });
 
->>>>>>> b75417d829a05a4bd6599d4777286bcd0c31c4e4
         // Обработчик события для кнопки "Из архива"
         $("#itemsTable").on("click", ".return-button", function (event) {
           event.stopPropagation();
