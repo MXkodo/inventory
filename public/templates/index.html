@@ -104,11 +104,11 @@
 
           <div class="pk-1">
               <img class="pk-2" src="/public/img/pk.svg" />
-              <div class="page-pk" style="display: none;"></div>
+             
     
           </div>
           <div class="pk-1">
-            <article onclick="showArchiv()">
+            <article>
               <p>Список <br />компьютеров</p>
             </article>
           </div>
@@ -121,10 +121,10 @@
 
           <div class="jurnal-1">
             <img class="jurnal-2" src="/public/img/jurnal.svg" />
-            <div class="page-jurnal" style="display: none;"></div>
+            
           </div>
           <div>
-            <article onclick="showArchiv()">
+            <article>
               <p>Журнал <br />событий</p>
             </article>
           </div>
@@ -133,38 +133,10 @@
 
           <div class="archiv-1">
             <img class="archiv-2" src="/public/img/archiv.svg" />
-            <div class="page-archiv" style="display: none;"></div>
+           
           </div>
           <div class="archiv-1"><article>Архив</article></div>
         </div>
-<!--Скрипт на появление подкладки страницы при нажатии на элемент-->
-         <script>
-          function showArchiv() {
-             document.querySelector('.page-archiv').style.display = 'block';
-          }
-         
-          // Добавляем обработчик событий click к элементу .archiv-1
-          document.querySelector('.archiv-1').addEventListener('click', showArchiv);
-         </script>
-
-         <script>
-          function showArchiv() {
-             document.querySelector('.page-jurnal').style.display = 'block';
-          }
-         
-          // Добавляем обработчик событий click к элементу .archiv-1
-          document.querySelector('.jurnal-1').addEventListener('click', showArchiv);
-         </script>
-
-         <script>
-          function showArchiv() {
-             document.querySelector('.page-pk').style.display = 'block';
-          }
-         
-          // Добавляем обработчик событий click к элементу .archiv-1
-          document.querySelector('.pk-1').addEventListener('click', showArchiv);
-         </script>
-<!--Скрипт на появление подкладки страницы при нажатии на элемент-->
         <div class="head test">
           <div class="box-3 test">
             <input
