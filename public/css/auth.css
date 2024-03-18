@@ -1,8 +1,9 @@
-css body {
+@media screen and (max-width: 1920px) {
+body {
   margin: 0;
 }
 .place {
-  /* background-color: aqua; */
+  
 
   height: 75vh;
   display: flex;
@@ -14,12 +15,13 @@ css body {
   height: 35vh;
   border-radius: 2vw;
   width: 60vh;
-  box-shadow: 0.3vh 0.3vh 0.3vh 0.3vh rgba(0, 0, 255, 0.2);
+  box-shadow: 0.3vh 0.3vh 0.3vh 0.3vh hsl(234, 34%, 80%);
 }
 h1 {
   font-family: inter, "Inter Bold";
   text-align: center;
   font-size: 3vh;
+  font-weight: 500;
 }
 form {
   display: flex;
@@ -27,32 +29,53 @@ form {
   align-items: center;
   box-shadow: 2vh;
 }
+
 input {
   font-family: inter, "Inter Bold";
   text-align: center;
   margin-top: 2vh;
-  border-radius: 1vh;
-  font-size: 1.3vw;
+  border-radius: 35px;
+  font-size: 1.3vw; 
   width: 40vh;
+  height: auto;
   border: #bfbfbf;
-  box-shadow: 0.2vh 0.2vh 0.2vh 0.2vh rgba(0, 0, 255, 0.2);
+  box-shadow: 0.2vh 0.2vh 0.2vh 0.2vh hsl(233, 34%, 80%);
 }
 button {
   padding: 0 2vh;
   margin: 0 1vh 1vh 0;
-  border-radius: 1.5vh;
+  border-radius: 21px;
   line-height: 35px;
+  font-weight: 700;
   font-size: 2vh;
+  width: auto;
+  height: 60px;
   margin-top: 4vh;
   color: #fff;
-  background-color: #53547a;
-  border: #53547a;
+  background-color: #1A73E8;
+  border: 1px solid #bfbfbf;
+  filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+  transition: transform 0.3s ease;
 }
+
+button:hover {
+  transform: scale(1.1);
+ }
+
 header {
-  height: 10.7vh; /* Высота шапки */
-  background-color: #53547a;
-  box-shadow: 0 0 1vh rgba(0, 0, 0, 0.5);
+  height: 8vh;
+  display: flex;
+  justify-content: space-between;
+  background: linear-gradient(
+    309deg,
+    #4a55a2 0%,
+    rgba(74, 85, 162, 0.99) 0.01%,
+    rgba(111, 120, 186, 0.99) 72.99%,
+    #9299d1 100%
+  );
+  width: 100%;
 }
+
 
 h2 {
   font-family: inter, "Inter Bold";
@@ -60,4 +83,115 @@ h2 {
   margin-top: -20vh;
   text-align: center;
   color: #c8c1c3;
+}
+
+.agtu {
+  margin-top: 0.1%;
+  height: 15vh;
+  width: auto;
+  filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+}
+
+}
+
+
+
+/*----адаптивка для мобилки---------------------------------------------------------------------------------------------------*/
+@media screen and (min-width: 400px) {
+  html, body {
+    margin: 0;
+    padding: 0;
+   }
+   
+   header, .container {
+    margin: 0;
+    padding: 0;
+ }
+
+ .container {
+  display: flow-root;
+ }
+.place {
+
+
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border {
+  height: 35vh;
+  border-radius: 2vw;
+  width: 42vh;
+  box-shadow: 0.3vh 0.3vh 0.3vh 0.3vh hsl(234, 34%, 80%);
+}
+h1 {
+  font-family: inter, "Inter Bold";
+  text-align: center;
+  font-size: 3vh;
+  font-weight: 500;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 2vh;
+}
+
+input {
+  font-family: inter, "Inter Bold";
+  text-align: center;
+  margin-top: 2vh;
+  border-radius: 35px;
+  font-size: 100%;
+  width: 30vh;
+  height: 2.5vh;
+  border: #bfbfbf;
+  box-shadow: 0.2vh 0.2vh 0.2vh 0.2vh hsl(233, 34%, 80%);
+}
+button {
+  padding: 0 2vh;
+  margin: 0 1vh 1vh 0;
+  border-radius: 21px;
+  line-height: 35px;
+  font-weight: 700;
+  font-size: 2vh;
+  width: auto;
+  height: 40px;
+  margin-top: 4vh;
+  color: #fff;
+  background-color: #1A73E8;
+  border: 1px solid #bfbfbf;
+  filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+}
+
+header {
+  height: 8vh;
+  display: flow-root;
+  justify-content: space-between;
+  background: linear-gradient(
+    309deg,
+    #4a55a2 0%,
+    rgba(74, 85, 162, 0.99) 0.01%,
+    rgba(111, 120, 186, 0.99) 72.99%,
+    #9299d1 100%
+  );
+  width: 100%;
+}
+
+
+h2 {
+  font-family: inter, "Inter Bold";
+  font-size: 7vh;
+  margin-top: -20vh;
+  text-align: center;
+  color: #c8c1c3;
+}
+
+.agtu {
+  height: 15vh;
+  width: auto;
+  filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+}
 }
