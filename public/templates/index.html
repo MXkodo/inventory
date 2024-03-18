@@ -105,7 +105,7 @@
           <div class="pk-1">
             <img class="pk-2" src="/public/img/pk.svg" />
           </div>
-          <div class="pk-1">
+          <div class="Change-log">
             <article>
             <article>
               <p>Список <br />компьютеров</p>
@@ -295,7 +295,38 @@
             });
           });
         }
+        // Обработчик события для клика по иконке "Журнал изменений"
+        function UpdateAuditTable() {
+          $.get("/changelog", function (data) {
+            var changelogItems = data.changlogs;
 
+            var tableBody = $("#itemsTable tbody");
+            tableBody.empty();
+
+           changelogItems.forEach(function (item) {
+              if (item && item.ID) {
+                var row = $("<tr>");
+                row.append($("<td>").text(item.invnumber));
+                row.append($("<td>").text(item.name));
+                row.append($("<td>").text(item.storage));
+                row.append($("<td>").text(item.date));
+                row.append($("<td>").text(item.budget ? "Да" : "Нет"));
+                row.append(
+                  $("<td>").append(
+                    $(
+                      '<button class="return-button archiv-button" type="button" data-id="' +
+                        item.ID +
+                        '">Из архива</button>'
+                    )
+                  )
+                );
+                row.attr("data-item", JSON.stringify(item));
+
+                tableBody.append(row);
+              } 
+            });
+          });
+        }
         // Вызов функции при клике на иконку "Архив"
         $(".archiv-1").on("click", function () {
           

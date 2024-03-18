@@ -27,13 +27,13 @@ type UpdateItemInput struct {
 	Desc      string `json:"desc"`
 }
 type ChangeLog struct {
-	ID        uint      `gorm:"primary_key"`
-	InvNumber string    `json:"invnumber"`
-	Name      string    `json:"name"`
-	Date      string 	`json:"date"`
-	Desc      string    `json:"desc"`
-	DescNew   string `json:"descnew"`
-	Action    string    `json:"action"`
+    InvNumber string `json:"invnumber"`
+    Name      string `json:"name"`
+    Date      string `json:"date"`
+    Desc      string `json:"desc"`
+    Change   string `json:"change"`
+    Action    string `json:"action"`
+    UserName string `json:"username"`
 }
 //-------------------------------------Items-----------------------------------------//
 // GET /items
@@ -52,6 +52,11 @@ func CreateItem(context *gin.Context) {
 		context.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
+	userName, err := ExtractUserFIO(context)
+	if err != nil {
+		context.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		return
+	}
 
 	item := models.Item{
 		InvNumber: input.InvNumber,
@@ -64,6 +69,8 @@ func CreateItem(context *gin.Context) {
 	initial.DB.Create(&item)
 
 	context.JSON(http.StatusOK, gin.H{"items": item})
+	LogChange(initial.DB, item, "добавлено", map[string]interface{}{"Desc": item.Desc}, userName)
+
 }
 
 // GET /items/:id
@@ -95,6 +102,12 @@ func UpdateItem(context *gin.Context) {
 		return
 	}
 
+	userName, err := ExtractUserFIO(context)
+	if err != nil {
+		context.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		return
+	}
+
 	updateFields := map[string]interface{}{
 		"InvNumber": input.InvNumber,
 		"Name":      input.Name,
@@ -111,7 +124,8 @@ func UpdateItem(context *gin.Context) {
         changes[key] = value
     }
 
-    LogChange(initial.DB, item, "update", changes)
+   LogChange(initial.DB, item, "обновлено", map[string]interface{}{"Desc": item.Desc}, userName)
+
    context.JSON(http.StatusOK, gin.H{"message": "Данные успешно обновлены"})
 
 }
@@ -139,12 +153,18 @@ func InsertAudit(context *gin.Context) {
 		return
 	}
 
+	userName, err := ExtractUserFIO(context)
+	if err != nil {
+		context.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		return
+	}
+
 	// Создаем запись для вставки в audit
 	auditItem := models.AuditItem{
 		InvNumber: item.InvNumber,
 		Name:      item.Name,
 		Storage:   item.Storage,
-		Date:      item.Date,
+		Date:      time.Now().Format("02.01.2006"),
 		Budget:    item.Budget,
 		Desc:      item.Desc,
 		DeletedAt: time.Now(),
@@ -165,7 +185,7 @@ func InsertAudit(context *gin.Context) {
 
 	// Удаляем запись из таблицы item
 	initial.DB.Delete(&item)
-
+	LogChange(initial.DB, item, "отправлено в архив", map[string]interface{}{"Desc": item.Desc}, userName)
 	context.JSON(http.StatusOK, gin.H{})
 }
 // POST /audit/:id/return
@@ -180,7 +200,11 @@ func ReturnItem(context *gin.Context) {
         context.JSON(http.StatusBadRequest, gin.H{"error": "Элемент не найден в audit"})
         return
     }
-
+	userName, err := ExtractUserFIO(context)
+	if err != nil {
+		context.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
+		return
+	}
     // Создаем запись для возврата в таблицу item
     item := models.Item{
         InvNumber: auditItem.InvNumber,
@@ -206,7 +230,7 @@ func ReturnItem(context *gin.Context) {
 
     // Удаляем запись из таблицы audit
     initial.DB.Delete(&auditItem)
-
+	LogChange(initial.DB, item, "возвращено из архива", map[string]interface{}{"Desc": item.Desc}, userName)
     context.JSON(http.StatusOK, gin.H{"message": "Запись успешно возвращена в item и удалена из audit"})
 }
 
@@ -218,15 +242,19 @@ func GetChangeLog(context *gin.Context) {
     context.JSON(http.StatusOK, gin.H{"changeLogs": changeLogs})
 }
 
-func LogChange(db *gorm.DB, item models.Item, action string, changes map[string]interface{}) {
+func LogChange(db *gorm.DB, item models.Item, action string, changes map[string]interface{}, userName string) {
     changeLog := ChangeLog{
         InvNumber: item.InvNumber,
         Name:      item.Name,
         Date:      item.Date,
         Desc:      item.Desc,
-        DescNew:   changes["Desc"].(string), 
+        Change:   changes["Desc"].(string),
         Action:    action,
+        UserName: userName, 
     }
-    db.Create(&changeLog)
+    if err := db.Create(&changeLog).Error; err != nil {
+    // Log the error or handle it as appropriate for your application
+    return
+}
 }
 

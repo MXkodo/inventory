@@ -1,8 +1,10 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/MXkodo/inventory/CRUD/initializers"
@@ -16,6 +18,36 @@ var body struct {
 	FIO string
 	UserName string
 	Password string
+}
+
+func ExtractUserFIO(c *gin.Context) (string, error) {
+	tokenString, err := c.Cookie("Authorization")
+    if err != nil {
+        return "", fmt.Errorf("authorization cookie is missing or invalid")
+    }
+
+	token, err := jwt.Parse(strings.TrimPrefix(tokenString, "Bearer "), func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
+		}
+		return []byte(os.Getenv("SECRET")), nil
+	})
+
+	if err != nil || !token.Valid {
+		return "", fmt.Errorf("anvalid token")
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !ok || !token.Valid {
+		return "", fmt.Errorf("invalid token claims")
+	}
+
+	userFIO, ok := claims["fio"].(string)
+	if !ok {
+		return "", fmt.Errorf("user FIO not found in token")
+	}
+
+	return userFIO, nil
 }
 
 func Signup(c *gin.Context) {
@@ -84,7 +116,8 @@ func Login(c *gin.Context) {
 	//Generate a jwt token
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
 		"sub": user.ID,
-		"exp": time.Now().Add(time.Hour * 24 * 30).Unix(),
+    	"exp": time.Now().Add(time.Hour * 24).Unix(),
+    	"fio": user.FIO,
 	})
 
 	tokenString, err := token.SignedString([]byte(os.Getenv("SECRET")))
