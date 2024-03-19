@@ -100,7 +100,7 @@ func Login(c *gin.Context) {
 
 	if user.ID == 0 {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Invalid login or password",
+			"error": "Неверный логин или пароль",
 		})
 		return
 	}
@@ -109,7 +109,7 @@ func Login(c *gin.Context) {
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "Invalid login or password",
+			"error": "Неверный логин или пароль",
 		})
 		return
 	}

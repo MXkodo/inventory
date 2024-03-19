@@ -1,58 +1,79 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/public/css/auth.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" media="screen and (max-device-width:480px)" href="/public/css/mobile-auth.css" />
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="/public/css/auth.css" rel="stylesheet" type="text/css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen and (max-device-width:480px)"
+      href="/public/css/mobile-auth.css"
+    />
+  </head>
 
-<body>
+  <body>
     <header>
-        <div>
-            <img class="agtu" src="/public/img/logo.svg" alt="Logo">
-        </div>
-      
+      <div>
+        <img class="agtu" src="/public/img/logo.svg" alt="Logo" />
+      </div>
     </header>
     <div class="place">
-        <div class="border">
-            <h1>Войдите, чтобы продолжить</h1>
-            <form action="/login" method="post">
-                <input type="text" name="UserName" placeholder="Login">
-                <input type="password" name="Password" placeholder="Password">
-                <button type="submit">Log in</button>
-                <p class="error">
-                <script>
-                document.querySelector('form').addEventListener('submit', function(event) {
-                    event.preventDefault();
+      <div class="border">
+        <h1>Войдите, чтобы продолжить</h1>
+        <form action="/login" method="post">
+          <input type="text" name="UserName" placeholder="Login" />
+          <input type="password" name="Password" placeholder="Password" />
+          <p class="error-message"></p>
+          <button type="submit">Log in</button>
+          <p class="error"></p>
+        </form>
+      </div>
+    </div>
+    <script>
+      document
+        .querySelector("form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
 
-                    var UserName = document.querySelector('input[name="UserName"]').value;
-                    var Password = document.querySelector('input[name="Password"]').value;
+          var UserNameInput = document.querySelector('input[name="UserName"]');
+          var PasswordInput = document.querySelector('input[name="Password"]');
 
-                    fetch('/login', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({ UserName: UserName, Password: Password }),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            localStorage.setItem('fio', data.fio);
-                            window.location.href = '/'; // Перенаправление на главную страницу после успешной авторизации
-                        } else {
-                            document.querySelector('.error').textContent = data.error;
-                        }
-                    })
-                    .catch(error => console.error('Ошибка:', error));
-
-                });
-                </script>
-            </div>
-        </div>
-    </p>
-</form>
-</body> 
+          fetch("/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              UserName: UserNameInput.value,
+              Password: PasswordInput.value,
+            }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.success) {
+                localStorage.setItem("fio", data.fio);
+                UserNameInput.classList.remove("error-input"); // Удаление класса при успешной авторизации
+                PasswordInput.classList.remove("error-input"); // Удаление класса при успешной авторизации
+                document.querySelector(".error-message").textContent = ""; // Очистка сообщения об ошибке
+                window.location.href = "/";
+              } else {
+                console.error("Ошибка:", error);
+                document.querySelector(".error-message").textContent =
+                  "Неверный логин или пароль";
+                UserNameInput.classList.add("error-input"); // Добавление класса при ошибке
+                PasswordInput.classList.add("error-input"); // Добавление класса при ошибке
+              }
+            })
+            .catch((error) => {
+              console.error("Ошибка:", error);
+              document.querySelector(".error-message").textContent =
+                "Неверный логин или пароль";
+              UserNameInput.classList.add("error-input"); // Добавление класса при ошибке
+              PasswordInput.classList.add("error-input"); // Добавление класса при ошибке
+            });
+        });
+    </script>
+  </body>
 </html>
