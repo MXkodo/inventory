@@ -117,7 +117,7 @@
           <div class="jurnal-1">
             <img class="jurnal-2" src="/public/img/jurnal.svg" />
           </div>
-          <div>
+          <div class="jurnal-1">
             <article>
             <article>
               <p>Журнал <br />событий</p>
@@ -218,7 +218,16 @@
             var items = data.items;
             var tableBody = $("#itemsTable tbody");
             tableBody.empty();
-
+            $("#itemsTable thead tr").empty().append(
+              "<th>Инв. номер</th>",
+              "<th>Наименование</th>",
+              "<th>Склад</th>",
+              "<th>Дата</th>",
+              "<th>Бюджет</th>",
+              `<th>
+              <img class="archiv-black" src="/public/img/archiv-black.png" />
+              </th>`
+            );
             items.forEach(function (item) {
               var row = $("<tr>");
               row.append($("<td>").text(item.invnumber));
@@ -268,7 +277,16 @@
 
             var tableBody = $("#itemsTable tbody");
             tableBody.empty();
-
+              $("#itemsTable thead tr").empty().append(
+              "<th>Инв. номер</th>",
+              "<th>Наименование</th>",
+              "<th>Склад</th>",
+              "<th>Дата</th>",
+              "<th>Бюджет</th>",
+              `<th>
+              <img class="archiv-black" src="/public/img/archiv-black.png" />
+              </th>`
+            );
             auditItems.forEach(function (item) {
               if (item && item.ID) {
                 var row = $("<tr>");
@@ -295,43 +313,42 @@
             });
           });
         }
-        // Обработчик события для клика по иконке "Журнал изменений"
-        function UpdateAuditTable() {
-          $.get("/changelog", function (data) {
-            var changelogItems = data.changlogs;
-
-            var tableBody = $("#itemsTable tbody");
-            tableBody.empty();
-
-           changelogItems.forEach(function (item) {
-              if (item && item.ID) {
-                var row = $("<tr>");
-                row.append($("<td>").text(item.invnumber));
-                row.append($("<td>").text(item.name));
-                row.append($("<td>").text(item.storage));
-                row.append($("<td>").text(item.date));
-                row.append($("<td>").text(item.budget ? "Да" : "Нет"));
-                row.append(
-                  $("<td>").append(
-                    $(
-                      '<button class="return-button archiv-button" type="button" data-id="' +
-                        item.ID +
-                        '">Из архива</button>'
-                    )
-                  )
-                );
-                row.attr("data-item", JSON.stringify(item));
-
-                tableBody.append(row);
-              } 
-            });
-          });
-        }
-        // Вызов функции при клике на иконку "Архив"
-      
+         // Вызов функции при клике на иконку "Архив"
         $(".archiv-1").on("click", function () {
           
           UpdateAuditTable();
+        }); 
+        // Обработчик события для клика по иконке "Журнал изменений"
+        function UpdateChangeLogTable() {
+          $.get("/changelog", function (data) {
+            var changelogItems = data.changeLogs;
+
+            var tableBody = $("#itemsTable tbody");
+            tableBody.empty();
+            $("#itemsTable thead tr").empty().append(
+              "<th>Инвентарный номер</th>",
+              "<th>Дата</th>",
+              "<th>Описание</th>",
+              "<th>Действие</th>",
+              "<th>ФИО</th>"
+            );
+           changelogItems.forEach(function (item) {
+                var row = $("<tr>");
+                row.append($("<td>").text(item.invnumber));
+                row.append($("<td>").text(item.date));
+                row.append($("<td>").text(item.desc));
+                row.append($("<td>").text(item.action));
+                row.append($("<td>").text(item.username));
+                row.attr("data-item", JSON.stringify(item));
+
+                tableBody.append(row);
+            });
+          });
+        }
+        // Вызов функции при клике на иконку "Журнал изменений"
+      
+        $(".jurnal-1").on("click", function () {
+          UpdateChangeLogTable();
         }); 
 
    

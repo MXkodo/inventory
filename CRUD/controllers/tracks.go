@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -238,7 +239,14 @@ func ReturnItem(context *gin.Context) {
 
 func GetChangeLog(context *gin.Context) {
     var changeLogs []models.ChangeLog
-    initial.DB.Find(&changeLogs)
+    result := initial.DB.Find(&changeLogs)
+    if result.Error != nil {
+        // Логирование ошибки, если она есть
+        context.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
+        return
+    }
+    // Логирование количества найденных записей
+    fmt.Printf("Found %d change logs\n", len(changeLogs))
     context.JSON(http.StatusOK, gin.H{"changeLogs": changeLogs})
 }
 

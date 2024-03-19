@@ -28,7 +28,7 @@ type ChangeLog struct {
     Name      string `json:"name"`
     Date      string `json:"date"`
     Desc      string `json:"desc"`
-    Change   string `json:"change"`
+    Change    string `json:"change"`
     Action    string `json:"action"`
     UserName string `json:"username"`
 }
