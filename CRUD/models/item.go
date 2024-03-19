@@ -24,11 +24,11 @@ type AuditItem struct {
 }
 
 type ChangeLog struct {
-	ID        uint      `gorm:"primary_key"`
-	InvNumber string    `json:"invnumber"`
-	Name      string    `json:"name"`
-	Date      string 	`json:"date"`
-	Desc      string    `json:"desc"`
-	DescNew   string `json:"descnew"`
-	Action    string    `json:"action"`
+    InvNumber string `json:"invnumber"`
+    Name      string `json:"name"`
+    Date      string `json:"date"`
+    Desc      string `json:"desc"`
+    Change    string `json:"change"`
+    Action    string `json:"action"`
+    UserName string `json:"username"`
 }
