@@ -1,0 +1,456 @@
+@media (hover: none) and (pointer: coarse) {
+    .Search {
+      border: 1px solid rgba(94, 94, 94, 0);
+      border-radius: 23px;
+      text-align: center;
+      background-image: url(../img/poisk.svg);
+      background-repeat: no-repeat;
+      width: 17vw;
+      height: auto;
+      box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+      background: rgba(255, 255, 255, 0.06);
+      position: relative;
+      right: 1vh;
+      outline: none;
+    }
+  
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  
+    input::placeholder {
+      color: #c8c1c3; /* Цвет текста */
+      font-size: 0.8rem; /* Размер текста */
+      opacity: 1; /* Для Firefox, чтобы убрать прозрачность */
+    }
+  
+    /* --------------Префиксы для разных браузеров-------------------------- */
+    ::-webkit-input-placeholder {
+      /* Chrome, Safari, Opera */
+      color: #c8c1c3;
+    }
+  
+    ::-ms-input-placeholder {
+      /* Microsoft Edge */
+      color: #c8c1c3;
+    }
+  
+    :-moz-placeholder {
+      /* Firefox 4 - 18 */
+      color: #c8c1c3;
+      opacity: 1;
+    }
+  
+    ::-moz-placeholder {
+      /* Firefox 19+ */
+      color: #c8c1c3;
+      opacity: 1;
+    }
+  
+    input,
+    textarea {
+      color: #c8c1c3; /* Цвет текста */
+    }
+  
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  
+    .hat {
+      height: 7vh;
+      display: flex;
+      justify-content: space-between;
+      background: linear-gradient(
+        309deg,
+        #4a55a2 0%,
+        rgba(74, 85, 162, 0.99) 0.01%,
+        rgba(111, 120, 186, 0.99) 72.99%,
+        #9299d1 100%
+      );
+    }
+    .head {
+      height: 7vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .add {
+      height: 2vh;
+      width: auto;
+      position: relative;
+      left: 0.1vh;
+    }
+    .agtu {
+      margin-top: 4vh;
+      height: 6vh;
+      width: auto;
+      filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+    }
+    .box-1,
+    .box-3 {
+      margin-right: 1vw;
+    }
+    .box-1 {
+      margin-left: 1vw;
+    }
+    .box-4 {
+      margin-right: 1vw;
+    }
+    .box-2 {
+      margin-top: 1.2vh;
+      margin-right: 3vw;
+    }
+    .pk {
+      position: relative;
+      z-index: 1000;
+      display: flex;
+      margin-right: 3vw;
+      position: relative;
+      right: 1vh;
+    }
+    .pk-2 {
+      position: relative;
+      z-index: 1000;
+      margin-top: 0.5vh;
+      height: 2vh;
+      width: auto;
+    }
+    .pk-1 {
+      padding-right: 0.3vw;
+    }
+  
+    article {
+      position: relative;
+      z-index: 1000;
+      font-size: 1vw;
+      color: #c8c1c3;
+      text-shadow: 3px 4px 8px #000;
+      font-family: "Bold";
+    }
+  
+    .page-pk {
+      position: absolute;
+      top: 0%;
+      left: 15%;
+      border-radius: 14px;
+      width: 35%;
+      height: 100%;
+      background: #7c85d1;
+    }
+  
+    .line-button-1 {
+      position: absolute;
+      margin-right: 1vh;
+      width: auto;
+      height: 3.5%;
+    }
+  
+    .jurnal-1 {
+      position: relative;
+      padding-right: 0.3vw;
+    }
+  
+    .jurnal-2 {
+      position: relative;
+      margin-top: 0.5vh;
+      margin-left: 2vh;
+      height: 2vh;
+      width: auto;
+    }
+  
+    .line-button-2 {
+      position: absolute;
+      margin-left: 1vh;
+      width: auto;
+      height: 3.5%;
+    }
+  
+    /*.archiv{
+      display: flex;
+      margin-right: 35vw;
+      filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));;
+    }*/
+  
+    .archiv-1 {
+      position: relative;
+      padding-right: 0.3vw;
+    }
+  
+    .archiv-2 {
+      position: relative;
+      margin-top: 0.5vh;
+      margin-left: 2vh;
+      height: 1.5vh;
+      width: auto;
+    }
+  
+    .bone {
+      height: 90vh;
+      width: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    .profile {
+      margin-top: 0.2vh;
+      height: 3vh;
+      width: auto;
+      position: relative;
+      right: 1vh;
+    }
+    table {
+      overflow-y: scroll;
+      scroll-snap-type: none;
+      height: 100vh;
+      margin-top: 1vh;
+      width: 90vw;
+      display: block;
+      justify-content: center;
+      text-align: center;
+      border: solid;
+      border-radius: 15px;
+      line-height: 3vh;
+      font-family: "Light";
+      border-collapse: collapse;
+      border-color: #53547A;
+      box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+    }
+    thead th {
+      position: sticky;
+      top: 0;
+      background: white;
+      border-bottom: solid;
+    }
+    th {
+      margin-bottom: 1vh;
+      height: auto;
+      width: 80vw;
+      font-size: 2.5vw;
+    }
+    td {
+      height: auto;
+      width: 80vw;
+      font-size: 2.5vw;
+    }
+    .change {
+      width: auto;
+      height: auto;
+      font-size: 2vw;
+      border-radius: 10vw;
+      text-align: center;
+      font-family: "Bold";
+    }
+  
+    /*Иконка Архив в таблице*/
+    .archiv-black{
+      width: 15%;
+      height: auto;
+      margin-top: 10%;
+    }
+    /*Стиль кнопки В Архив*/
+    .archiv-button{
+      border-radius: 12px;
+      width: 75px;
+      height: auto;
+      background: #9299d1;
+      border: none;
+      color: #ffffff; 
+    }
+  
+    .archiv-button:hover {
+      background: #7C85D1; /* Изменить цвет при наведении */
+  }
+  
+  .archiv-button:active {
+    background: #6a7bf7; /* Изменить цвет при нажатии */
+  }
+  
+    tr:hover {
+      background-color: rgba(124, 133, 209, 0.2);
+    }
+    tr:active {
+      background-color: rgba(124, 133, 209, 0.5);
+  }
+  
+    .second::-webkit-scrollbar {
+      width: auto;
+    }
+   
+    .second::-webkit-scrollbar-thumb {
+      background: rgba(217, 217, 217, 0.4);
+      border-radius: 15px;
+    }
+    .second::-webkit-scrollbar-thumb:hover {
+      border: 2px solid #ccc4c5; /* Граница ползунка */
+     }
+  }
+  @media screen and (hover: none) and (pointer: coarse) and (orientation: landscape) {
+    .change {
+      height: 5vh;
+      font-size: 3vh;
+      width: auto;
+    }
+    .agtu {
+      height: 7vh;
+    }
+    .logo {
+      margin-right: -20%;
+    }
+    .Search {
+      width: 13vw;
+    }
+    .add {
+      height: 4vh;
+      width: auto;
+    }
+    .pk-2 {
+      position: relative;
+      height: 4vh;
+      width: auto;
+      top: 3px;
+    }
+    .profile {
+      bottom: 0.2vh;
+    }
+    img {
+      margin-top: 1vh;
+      width: 3vw;
+      height: auto;
+    }
+    tr {
+      margin-top: 4vh;
+      line-height: 6vh;
+    }
+    th {
+      font-size: 1.5vw;
+    }
+    td {
+      font-size: 1.5vw;
+      line-height: 6vh;
+    }
+    input {
+      width: 10vw;
+    }
+  }
+  
+  /*------------------------------------------------------------------------------------------------
+  ВНИЗУ МОДАЛЬНОЕ ОКНО В ЕДИНСТВЕННОМ ЭКЗМЕПЛЯРЕ
+  /* свойства модального окна по умолчанию */
+  .modal {
+    position: fixed; /* фиксированное положение */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5); /* цвет фона */
+    z-index: 1050;
+    opacity: 0; /* по умолчанию модальное окно прозрачно */
+    -webkit-transition: opacity 200ms ease-in;
+    -moz-transition: opacity 200ms ease-in;
+    transition: opacity 200ms ease-in; /* анимация перехода */
+    pointer-events: none; /* элемент невидим для событий мыши */
+    margin: 0;
+    padding: 0;
+  }
+  /* при отображении модального окно */
+  .modal:target {
+    opacity: 1; /* делаем окно видимым */
+    pointer-events: auto; /* элемент видим для событий мыши */
+    overflow-y: auto; /* добавляем прокрутку по y, когда элемент не помещается на страницу */
+  }
+  /* ширина модального окна и его отступы от экрана */
+  .modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+  }
+  @media (min-width: 576px) {
+    .modal-dialog {
+      max-width: 500px;
+      margin: 30px auto; /* для отображения модального окна по центру */
+    }
+  }
+  /* свойства для блока, содержащего контент модального окна */
+  .modal-content {
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    outline: 0;
+  }
+  @media (min-width: 768px) {
+    .modal-content {
+      -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+  }
+  /* свойства для заголовка модального окна */
+  .modal-header {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid #eceeef;
+  }
+  .modal-title {
+    margin-top: 0;
+    margin-bottom: 0;
+    line-height: 1.5;
+    font-size: 1.25rem;
+    font-weight: 500;
+  }
+  /* свойства для кнопки "Закрыть" */
+  .close {
+    float: right;
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.5;
+    text-decoration: none;
+  }
+  /* свойства для кнопки "Закрыть" при нахождении её в фокусе или наведении */
+  .close:focus,
+  .close:hover {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: 0.75;
+  }
+  /* свойства для блока, содержащего основное содержимое окна */
+  .modal-body {
+    position: relative;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 15px;
+    overflow: auto;
+  }
+  

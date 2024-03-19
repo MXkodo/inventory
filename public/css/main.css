@@ -63,15 +63,15 @@ li ul {
   height: auto;
 }
 
-.profile {
+/*.profile {
   display: flex;
-  /* position: absolute; */
   margin-top: 0.3vh;
   margin-right: 4vw;
   margin-left: 1vw;
   position: absolute;
   right: 20vh;
 }
+*/
 .helper li {
   display: flex;
   justify-content: center;
@@ -85,7 +85,7 @@ li ul {
   border: 1px solid #53547a;
   border-radius: 8px;
   position: absolute;
-  right: 1vh;
+  right: 18vh;
   filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
 }
 li .exit {
@@ -130,9 +130,8 @@ input {
     height: auto;
     box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
     background: rgba(255, 255, 255, 0.06);
-    position: absolute;
-    right: 44vh;
-    top: 3.2vh;
+    position: relative;
+    right: 62vh;
     display: flex;
     outline: none;
   }
@@ -173,8 +172,12 @@ input {
   /*-------------------------------------------------------------------------------------------------------------------------*/
 
   body {
-    margin: 0vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
   }
+
+  
   /*Тут добавление и профиль*/
   .add {
     height: 4vh;
@@ -186,7 +189,7 @@ input {
     height: 6vh;
     width: auto;
     position: relative;
-    left: 2vh;
+    right: 23vh;
   }
   /*Это работа с пикчей агту*/
   .agtu {
@@ -216,9 +219,6 @@ input {
     justify-content: center;
     align-items: center;
   }
-  /* .test{
-    border: solid;
-  } */
 
   .pk {
     display: flex;
@@ -288,7 +288,7 @@ input {
 
   .line-button-1 {
     display: flex;
-    position: absolute;
+    position: relative;
     margin-left: 7.5vh;
     width: auto;
     height: auto;
@@ -311,8 +311,8 @@ input {
 
   .line-button-2 {
     display: flex;
-    position: absolute;
-    margin-left: 50vh;
+    position: relative;
+    margin-left: 10vh;
     width: auto;
     height: auto;
   }
@@ -332,7 +332,7 @@ input {
     position: relative;
     z-index: 1000;
     margin-top: 0.5vh;
-    margin-left: 12vh;
+    margin-left: 8vh;
     height: 2.7vh;
     width: auto;
   }
@@ -469,6 +469,12 @@ input {
     outline: none;
   }
 
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+
   input::placeholder {
     color: #c8c1c3; /* Цвет текста */
     font-size: 0.8rem; /* Размер текста */
@@ -502,12 +508,6 @@ input {
   textarea {
     color: #c8c1c3; /* Цвет текста */
   }
-
-  /* img{
-    margin-top: 1vh;
-    width: 5vw;
-    height: auto;
-   } */
 
   * {
     margin: 0;
@@ -583,13 +583,11 @@ input {
     font-size: 1vw;
     color: #c8c1c3;
     text-shadow: 3px 4px 8px #000;
-    /* font-weight: 550; */
     font-family: "Bold";
   }
 
   .page-pk {
     position: absolute;
-    /*margin-top: 10px;*/
     top: 0%;
     left: 15%;
     border-radius: 14px;
@@ -727,7 +725,6 @@ input {
 }
 
   tr:hover {
-    /*background-color: #7C85D1;*/
     background-color: rgba(124, 133, 209, 0.2);
   }
   tr:active {
@@ -737,11 +734,7 @@ input {
   .second::-webkit-scrollbar {
     width: auto;
   }
- /* .second::-webkit-scrollbar-track {
-    border: #D9D9D9;
-    background: rgba(217, 217, 217, 0.5);
-    border-radius: 5px;
-  } */
+ 
   .second::-webkit-scrollbar-thumb {
     background: rgba(217, 217, 217, 0.4);
     border-radius: 15px;
