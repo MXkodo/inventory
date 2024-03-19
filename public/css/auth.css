@@ -12,16 +12,21 @@ body {
 }
 
 .border {
+  position: absolute;
+  top: 200px;
+  border: 1px solid #ababab;
   height: 35vh;
-  border-radius: 2vw;
-  width: 60vh;
-  box-shadow: 0.3vh 0.3vh 0.3vh 0.3vh hsl(234, 34%, 80%);
+  border-radius: 35px;
+  width: 702px;
+  height: 389px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25); 
 }
 h1 {
   font-family: inter, "Inter Bold";
   text-align: center;
   font-size: 3vh;
   font-weight: 500;
+  color: #5a5a5a;
 }
 form {
   display: flex;
@@ -33,13 +38,13 @@ form {
 input {
   font-family: inter, "Inter Bold";
   text-align: center;
-  margin-top: 2vh;
-  border-radius: 35px;
+  margin-top: 4vh;
+  border-radius: 21px;
   font-size: 1.3vw; 
-  width: 40vh;
-  height: auto;
-  border: #bfbfbf;
-  box-shadow: 0.2vh 0.2vh 0.2vh 0.2vh hsl(233, 34%, 80%);
+  width: 410px;
+  height: 40px;
+  border: 1px solid #ababab;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 button {
   padding: 0 2vh;
@@ -48,11 +53,11 @@ button {
   line-height: 35px;
   font-weight: 700;
   font-size: 2vh;
-  width: auto;
-  height: 60px;
-  margin-top: 4vh;
+  width: 132px;
+  height: 44px;
+  margin-top: 10vh;
   color: #fff;
-  background-color: #1A73E8;
+  background-color: #7C85D1;
   border: 1px solid #bfbfbf;
   filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
   transition: transform 0.3s ease;
@@ -97,7 +102,7 @@ h2 {
 
 
 /*----адаптивка для мобилки---------------------------------------------------------------------------------------------------*/
-@media screen and (min-width: 400px) {
+/*@media screen and (min-width: 400px) {
   html, body {
     margin: 0;
     padding: 0;
@@ -121,16 +126,21 @@ h2 {
 }
 
 .border {
+  position: absolute;
+  top: 200px;
+  border: 1px solid #ababab;
   height: 35vh;
-  border-radius: 2vw;
-  width: 42vh;
-  box-shadow: 0.3vh 0.3vh 0.3vh 0.3vh hsl(234, 34%, 80%);
+  border-radius: 35px;
+  width: 380px;
+  height: 389px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25); 
 }
 h1 {
   font-family: inter, "Inter Bold";
   text-align: center;
   font-size: 3vh;
   font-weight: 500;
+  color: #5a5a5a;
 }
 form {
   display: flex;
@@ -142,13 +152,13 @@ form {
 input {
   font-family: inter, "Inter Bold";
   text-align: center;
-  margin-top: 2vh;
-  border-radius: 35px;
-  font-size: 100%;
-  width: 30vh;
-  height: 2.5vh;
-  border: #bfbfbf;
-  box-shadow: 0.2vh 0.2vh 0.2vh 0.2vh hsl(233, 34%, 80%);
+  margin-top: 4vh;
+  border-radius: 21px;
+  font-size: 1.3vw; 
+  width: 310px;
+  height: 40px;
+  border: 1px solid #ababab;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 button {
   padding: 0 2vh;
@@ -157,13 +167,14 @@ button {
   line-height: 35px;
   font-weight: 700;
   font-size: 2vh;
-  width: auto;
-  height: 40px;
-  margin-top: 4vh;
+  width: 132px;
+  height: 44px;
+  margin-top: 7vh;
   color: #fff;
-  background-color: #1A73E8;
+  background-color: #7C85D1;
   border: 1px solid #bfbfbf;
   filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+  transition: transform 0.3s ease;
 }
 
 header {

@@ -9,9 +9,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <link rel="stylesheet" href="../css/edit.css" />
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width:480px)" href="mobile.css" />
   </head>
   <body>
-    <h2 align="center">Изменение позиции</h2>
+    <header>
+      <div>
+          <img class="agtu" src="/public/img/logo.svg" alt="Logo">
+      </div>
+      <div class="hat-text" align="center">Изменение позиции</div>
+  </header>
+    
     <form id="myFormUpdate" action="/items" method="post" align="center">
       <p>Инв. номер</p>
       <input type="text" name="invnumber" required />
