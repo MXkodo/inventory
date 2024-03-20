@@ -177,7 +177,6 @@ input {
     overflow: hidden;
   }
 
-  
   /*Тут добавление и профиль*/
   .add {
     height: 4vh;
@@ -263,7 +262,7 @@ input {
     background: #7c85d1;
   }
 
-  .page-jurnal{
+  .page-jurnal {
     position: absolute;
     /*margin-top: 10px;*/
     top: -60%;
@@ -274,7 +273,7 @@ input {
     background: #7c85d1;
   }
 
-  .page-archiv{
+  .page-archiv {
     position: absolute;
     /*margin-top: 10px;*/
     top: -60%;
@@ -284,8 +283,18 @@ input {
     height: 217%;
     background: #7c85d1;
   }
-  
 
+  .notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #4caf50;
+    color: white;
+    padding: 16px;
+    border-radius: 4px;
+    display: none;
+    z-index: 1000;
+  }
   .line-button-1 {
     display: flex;
     position: relative;
@@ -336,29 +345,29 @@ input {
     height: 2.7vh;
     width: auto;
   }
-/*Иконка Архив в таблице*/
-  .archiv-black{
+  /*Иконка Архив в таблице*/
+  .archiv-black {
     width: 15%;
     height: auto;
     margin-top: 10%;
   }
   /*Стиль кнопки В Архив*/
-  .archiv-button{
+  .archiv-button {
     border-radius: 12px;
     width: 86px;
     height: 24px;
     background: #9299d1;
     border: none;
-    color: #ffffff; 
+    color: #ffffff;
   }
 
   .archiv-button:hover {
-    background: #7C85D1; /* Изменить цвет при наведении */
-}
+    background: #7c85d1; /* Изменить цвет при наведении */
+  }
 
-.archiv-button:active {
-  background: #6a7bf7; /* Изменить цвет при нажатии */
-}
+  .archiv-button:active {
+    background: #6a7bf7; /* Изменить цвет при нажатии */
+  }
 
   .box-1,
   .box-3 {
@@ -435,7 +444,7 @@ input {
   }
   tr:active {
     background-color: rgba(124, 133, 209, 0.5);
-}
+  }
   .second::-webkit-scrollbar {
     width: auto;
   }
@@ -671,7 +680,7 @@ input {
     line-height: 3vh;
     font-family: "Light";
     border-collapse: collapse;
-    border-color: #53547A;
+    border-color: #53547a;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
   }
   thead th {
@@ -701,47 +710,47 @@ input {
   }
 
   /*Иконка Архив в таблице*/
-  .archiv-black{
+  .archiv-black {
     width: 15%;
     height: auto;
     margin-top: 10%;
   }
   /*Стиль кнопки В Архив*/
-  .archiv-button{
+  .archiv-button {
     border-radius: 12px;
     width: 75px;
     height: auto;
     background: #9299d1;
     border: none;
-    color: #ffffff; 
+    color: #ffffff;
   }
 
   .archiv-button:hover {
-    background: #7C85D1; /* Изменить цвет при наведении */
-}
+    background: #7c85d1; /* Изменить цвет при наведении */
+  }
 
-.archiv-button:active {
-  background: #6a7bf7; /* Изменить цвет при нажатии */
-}
+  .archiv-button:active {
+    background: #6a7bf7; /* Изменить цвет при нажатии */
+  }
 
   tr:hover {
     background-color: rgba(124, 133, 209, 0.2);
   }
   tr:active {
     background-color: rgba(124, 133, 209, 0.5);
-}
+  }
 
   .second::-webkit-scrollbar {
     width: auto;
   }
- 
+
   .second::-webkit-scrollbar-thumb {
     background: rgba(217, 217, 217, 0.4);
     border-radius: 15px;
   }
   .second::-webkit-scrollbar-thumb:hover {
     border: 2px solid #ccc4c5; /* Граница ползунка */
-   }
+  }
 }
 @media screen and (hover: none) and (pointer: coarse) and (orientation: landscape) {
   .change {

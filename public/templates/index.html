@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/public/js/js.js"></script>
     <title>Main</title>
+    <div id="notification" class="notification"></div>
   </head>
   <body>
     <!--Тут таится модальное окно-->
@@ -47,42 +48,58 @@
 
               <p>Описание</p>
               <textarea name="desc"></textarea>
-              <button class="archiv-button" type="submit">Сохранить</button> <!--Поменять класс кнопки-->
+              <button class="archiv-button" type="submit">Сохранить</button> 
               
             </form>
 
             <script>
-              document
-                .getElementById("myForm")
-                .addEventListener("submit", function (event) {
-                  event.preventDefault();
+             document.getElementById("myForm").addEventListener("submit", function (event) {
+              event.preventDefault();
 
-                  const formData = new FormData(event.target);
-                  const data = Object.fromEntries(formData.entries());
-                  console.log("data.budget:", data.budget);
-                  data.budget = data.budget === "option1";
-                  console.log("data.budget:", data.budget);
-                  const jsonData = JSON.stringify(data);
-                  console.log(jsonData);
+              const formData = new FormData(event.target);
+              const data = Object.fromEntries(formData.entries());
+              data.budget = data.budget === "option1";
+              const jsonData = JSON.stringify(data);
 
-                  fetch("/items", {
-                    method: "POST",
-                    headers: {
+              fetch("/items", {
+                  method: "POST",
+                  headers: {
                       "Content-Type": "application/json",
-                    },
-                    body: jsonData,
-                  })
-                    .then((response) => {
-                      if (!response.ok) {
-                        throw new Error(
-                          "Ошибка при отправке данных: " + response.statusText
-                        );
-                      }
-                      return response.json();
-                    })
-                    .then((data) => console.log(data))
-                    .catch((error) => console.error("Ошибка:", error));
-                });
+                  },
+                  body: jsonData,
+              })
+              .then((response) => {
+                  if (!response.ok) {
+                      throw new Error("Ошибка при отправке данных: " + response.statusText);
+                  }
+                  return response.json();
+              })
+              .then((data) => {
+                  console.log(data);
+                  // Сохраняем информацию о том, что уведомление должно быть показано
+                  localStorage.setItem('showNotification', 'true');
+                  // Перезагружаем страницу
+                  location.reload();
+              })
+              .catch((error) => console.error("Ошибка:", error));
+          });
+          function showNotification(message) {
+          const notification = document.getElementById('notification');
+          notification.textContent = message;
+          notification.style.display = 'block';
+          setTimeout(() => {
+              notification.style.display = 'none';
+          }, 3000); // Скрываем уведомление через 3 секунды
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+          // Проверяем, есть ли информация о том, что уведомление должно быть показано
+          if (localStorage.getItem('showNotification') === 'true') {
+              // Показываем уведомление
+              showNotification("Запись добавлена");
+              // Удаляем информацию из localStorage
+              localStorage.removeItem('showNotification');
+          }
+      });
             </script>
           </div>
         </div>
@@ -211,6 +228,7 @@
       </table>
     </div>
     <script>
+      
       $(document).ready(function () {
         // Функция для обновления таблицы
         function updateItemsTable() {
