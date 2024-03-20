@@ -8,30 +8,37 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <link rel="stylesheet" href="/public/css/edit.css" />
     <link rel="stylesheet" type="text/css" media="screen and (max-device-width:480px)" href="/public/css/mobile/mobile-edit.css" />
+    <link rel="stylesheet" type="text/css" media="screen and (min-device-width:2048px)" href="/public/css/big/big-edit.css" />
   </head>
   <body>
     <header>
       <div>
-        <a href="index.html"><img class="agtu" src="/public/img/logo.svg" alt="Logo"></a>
+        <img id="LogoId" class="agtu" src="/public/img/logo.svg" alt="Logo">
       </div>
       <div>
-        <a href="index.html">
-            <img class="back" src="/public/img/back.svg"> 
-        </a>
+        <img id="BackId" class="back" src="/public/img/back.svg">
    </div>
+ 
       <div class="hat-text" align="center">Изменение позиции</div>
   </header>
     
-    <form id="myFormUpdate" action="/items" method="post" align="center">
-      <p>Инв. номер</p>
+    <form id="myFormUpdate" action="/items" method="post">
+      <div class="form1-row">
+      <p><article>Инв. номер</article></p>
       <input type="text" name="invnumber" required />
-      <p>Название</p>
+      <p><article>Название</article></p>
       <input type="text" name="name" required />
-      <p>Хранение</p>
-      <!--Выпадающий список для Склада-->
+      <p><article>Описание</article></p>
+      <textarea name="desc"></textarea>
+    </div>
 
+      <div class="form2-row">
+      <p><article>Хранение</article></p>
+      <!--Выпадающий список для Склада-->
+      <div class="select-storage">
       <select name="storage" required>
         <option value="">Выберите склад</option>
         <option value="гл.407 УИСИТ">гл.407 УИСИТ</option>
@@ -39,21 +46,29 @@
         <option value="Склад ВСИС">Склад ВСИС</option>
         <option value="Склад ИБ">Склад ИБ</option>
       </select>
+    </div>
 
-      <p>Бюджет</p>
+   
+    
+  
+      <p><article>Бюджет</article></p>
       <!--Выпадающий список для Бюджет-->
       <select name="budget" required>
         <option value="">Выбрать</option>
         <option value="option1">Да</option>
         <option value="option2">Нет</option>
       </select>
+    </div>
 
-      <p>Описание</p>
-      <textarea name="desc"></textarea>
+      
       <input type="hidden" name="date" />
-      <button type="submit">Сохранить</button>
+      
     </form>
-    <div id="qrCodeContainer"></div>
+    <button class="button-sumbit" type="submit" form="myFormUpdate">Сохранить</button> 
+    <div class="border-form"></div>
+    <div class="border-qrcode"></div>
+
+    <div id="qrCodeContainer"></div> 
     <button id="downloadQR">Скачать QR-код</button>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -153,5 +168,12 @@
           });
       });
     </script>
+    <!--Здесь хранятся ссылки при нажатии на изображения #BackId, #LogoId-->
+    <script>
+      $(document).on("click", "#BackId, #LogoId", function() {
+    window.location.href = 'index.html';
+});
+      </script>
+     
   </body>
 </html>

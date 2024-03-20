@@ -10,3 +10,14 @@ document.addEventListener("DOMContentLoaded", function(){
       document.querySelector('#openModal').style.marginLeft = '0px';
     });
   });
+
+  //Выпадающий список
+$("li").mouseover(function(){
+    $(this).find('.drop-down').slideDown(300);
+    $(this).find(".accent").addClass("animate");
+    $(this).find(".item").css("color","#FFF");
+   }).mouseleave(function(){
+     $(this).find(".drop-down").slideUp(300);
+      $(this).find(".accent").removeClass("animate");
+      $(this).find(".item").css("color","#000");
+   });
