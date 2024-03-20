@@ -2,7 +2,19 @@
 body {
   margin: 0;
 }
+@font-face {
+  font-family: "Bold";
+  src: url("../fonts/Inter-SemiBold.ttf");
+}
+@font-face {
+  font-family: "Light";
+  src: url(../fonts/Inter-Light.ttf);
+}
 
+article{
+  font-family: "Light";
+  font-size: 2vh;
+}
 
 header {
   height: 8vh;
@@ -26,9 +38,14 @@ header {
 }
 
 .hat-text{
+  
   position: relative;
-  margin-left: 0%;
-  bottom: 16vh;
+  /*margin-left: 0%; */
+  /*margin-top: 0%;*/
+ /* top: 0%; */
+  bottom: 17.5vh;
+  text-align: center; 
+  font-family: "Bold";
   font-weight: 700;
   font-size: 40px;
   color: #c8c1c3;
@@ -37,10 +54,93 @@ header {
 
 .back{
   position: relative;
-  bottom: 12.7vh;
-  left: 76vh;
+  bottom: 13.5vh;
+  left: 60vh;
   filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
 }
+
+#myFormUpdate{
+  position: relative;
+  z-index: 1000;
+  margin-left: 50vh;
+  top: 20vh;
+}
+
+.border-form{
+  display: flex;
+  position: absolute;
+  left: 47vh;
+  bottom: 15vh;
+  border: 1px solid #53547a;
+  border-radius: 35px;
+  width: 720px;
+  height: 663px;
+}
+
+.border-qrcode{
+  display: flex;
+  position: absolute;
+  left: 131.5vh;
+  bottom: 49.5vh;
+  border: 1px solid #53547a;
+  border-radius: 35px;
+  width: 200px;
+  height: 200px;
+}
+
+.form2-row {
+  position: absolute;
+  left: 50vh;
+  top: 10vh;
+ 
+}
+
+.form1-row{
+  position: absolute;
+  top: 10vh;
+}
+
+input{
+  font-family: "Bold";
+}
+
+.button-sumbit{
+  position: absolute;
+  z-index: 1000;
+  left: 78vh;
+  bottom: 30vh;
+  border-radius: 12px;
+  font-family: "Bold";
+    width: 86px;
+    height: 33px;
+    background: linear-gradient(132deg, #7c85d1 0%, #4a55a2 100%);
+    border: none;
+    color: #ffffff; 
+    filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+}
+
+#downloadQR{
+  position: absolute;
+  left: 135.4vh;
+  bottom: 40vh;
+  border-radius: 12px;
+  font-family: "Bold";
+    width: 120px;
+    height: 40px;
+    background: linear-gradient(132deg, #7c85d1 0%, #4a55a2 100%);
+    border: none;
+    color: #ffffff; 
+    filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+}
+
+#qrCodeContainer{
+  position: absolute;
+  z-index: 1000;
+  left: 135vh;
+  top: 35vh;
+}
+
+
 table {
   margin-top: 50px;
   font-size: 14px;
@@ -139,10 +239,91 @@ button:before {
   z-index: -1;
   content: "";
   color: #000 !important;
-  background: #f7ca18;
+  background: #b7bef0;
   transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 }
 
+ 
+ /*Выпадающий список*/
+ ul {
+  width: 620px;
+  margin: 0 auto;
+    
+    li {
+      float: left;
+      list-style: none;
+      margin-right: 10px;
+      position: relative;
+      
+      a {
+        font: 700 15px Open Sans;
+        text-transform: uppercase;
+        position: relative;
+        color: #333333;
+        text-decoration: none;
+        border: 3px solid #000000;
+        letter-spacing: 1px;
+        padding: 10px 15px 10px 25px;
+        display: block;
+        width: 150px;
+        z-index: 5000;
+        
+        i {
+          font-size: 12px !important;
+          position: absolute;
+          right: 10px;
+          top: 14px;
+        }
+      }
+      
+      .drop-down {
+        position: absolute;
+        padding: 0;
+        display: none;
+        margin: 0;
+        left: 0;
+        z-index: 0;
+        
+        li {
+          position: relative;
+          float: none;
+          
+          a {
+            border-top: none;
+            width: 150px;
+            
+            &:hover {
+              background: #000000;
+              color: #ffffff;
+            }
+          }
+        }
+        
+        li:nth-of-type(1) a {
+          border-top: none;
+        }
+      }
+    }
+  }
+  
+  .accent {
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: #000;
+    position: absolute;
+    transition: 0.3s ease;
+  }
+  
+  .animate {
+    width: 100%;
+    transition: 0.3s ease;
+  }
+  
+  .item:hover {
+    color: #ffffff;
+  }
 }
 
 /*----адаптивка для мобилки---------------------------------------------------------------------------------------------------*/
