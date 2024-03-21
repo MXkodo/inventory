@@ -12,7 +12,7 @@
   
   article{
     font-family: "Light";
-    font-size: 2vh;
+    font-size: 1vh;
   }
   
   header {
@@ -61,22 +61,21 @@
   } 
   
   #myFormUpdate{
-    position: relative;
+    position: absolute;
     z-index: 1000;
-    margin-left: 2vh;
-    top: 0vh;
-    
+    margin-left: 4vh;
+    top: 0vh; 
   }
   
   .border-form{
     display: flex;
     position: absolute;
     left: 1vh;
-    bottom: 43vh;
+    bottom: 40vh;
     border: 1px solid #53547a;
     border-radius: 35px;
-    width: 390px;
-    height: 363px;
+    width: 395px;
+    height: 300px;
     filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
   }
   
@@ -107,11 +106,23 @@
   input{
     font-family: "Bold";
   }
+
+  input[type=text] {
+    border: 1px solid rgb(136, 136, 136); 
+    border-radius: 12px; 
+}
+
+.desc-form {
+  border: 1px solid rgb(136, 136, 136); 
+  border-radius: 12px;
+}
+
+
   
   .button-sumbit{
     position: absolute;
     z-index: 1000;
-    left: 18vh;
+    left: 29vh;
     bottom: 45vh;
     border-radius: 12px;
     font-family: "Bold";
@@ -140,8 +151,8 @@
   #qrCodeContainer{
     position: absolute;
     z-index: 1000;
-    left: 16vh;
-    top: 65vh;
+    left: 16.5vh;
+    top: 49.5vh;
   }
   
   
