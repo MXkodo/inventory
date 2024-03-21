@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="/public/css/main.css" />
-   <!-- <link rel="stylesheet" type="text/css" media="screen and (max-device-width:480px)" href="/public/css/mobile/mobile-main.css" /> --Отдельный стиль для мобилки-->
+    <link rel="stylesheet" type="text/css" media="screen and (max-device-width:480px)" href="/public/css/mobile/mobile-main.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/public/js/js.js"></script>
     <title>Main</title>
@@ -195,7 +195,7 @@
                     });
                   </script>
 
-                  <li class="login username"></li>
+                  <li class="login username">Кабан Кабаныч Кабанов</li>
                   <li>
                     <a class="exit" href="#" onclick="logout()"
                       ><img src="/public/img/logout.png" />Выйти</a
@@ -214,15 +214,18 @@
           <tr>
             <th>Инв. номер</th>
             <th>Наименование</th>
-            <th>Склад</th>
-            <th>Дата</th>
-            <th>Бюджет</th>
+            <th onclick="sortTable(0)">Склад</th>
+            <th onclick="sortTable(1)">Дата</th>
+            <th onclick="sortTable(2)">Бюджет</th>
             <th>
               <img class="archiv-black" src="/public/img/archiv-black.png" />
             </th>
 
             <!--<th>&#9998;</th> -->
           </tr>
+
+         
+
         </thead>
         <tbody></tbody>
       </table>
@@ -422,6 +425,47 @@
           }
         });
       });
+    </script>
+    <!--СОРТИРОВКА ТАБЛИЦЫ-->
+
+    <script>
+      function sortTable(columnIndex) {
+    let table, rows, switching, i, x, y, shouldSwitch;
+    table = document.getElementById("itemsTable");
+    switching = true;
+
+    while (switching) {
+        switching = false;
+        rows = table.rows;
+
+        for (i = 1; i < (rows.length - 1); i++) {
+            shouldSwitch = false;
+            x = rows[i].getElementsByTagName("TD")[columnIndex];
+            y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
+
+            // Сортировка по дате
+            if (columnIndex === 1) {
+                let dateA = new Date(x.innerHTML);
+                let dateB = new Date(y.innerHTML);
+                if (dateA > dateB) {
+                    shouldSwitch = true;
+                    break;
+                }
+            } else {
+                // Сортировка по имени или имени
+                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+        }
+        if (shouldSwitch) {
+            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+            switching = true;
+        }
+    }
+}
+
     </script>
   </body>
 </html>
