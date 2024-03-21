@@ -3,6 +3,7 @@ package controllers
 import (
 	"fmt"
 	"net/http"
+	"strings"
 	"time"
 
 	initial "github.com/MXkodo/inventory/CRUD/initializers"
@@ -58,7 +59,8 @@ func CreateItem(context *gin.Context) {
 		context.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
-
+	 input.InvNumber = strings.ReplaceAll(input.InvNumber, "M", "М")
+    input.InvNumber = strings.ReplaceAll(input.InvNumber, "m", "м")
 	item := models.Item{
 		InvNumber: input.InvNumber,
 		Name:      input.Name,
@@ -108,7 +110,8 @@ func UpdateItem(context *gin.Context) {
 		context.JSON(http.StatusUnauthorized, gin.H{"error": err.Error()})
 		return
 	}
-
+	input.InvNumber = strings.ReplaceAll(input.InvNumber, "M", "М")
+    input.InvNumber = strings.ReplaceAll(input.InvNumber, "m", "м")
 	updateFields := map[string]interface{}{
 		"InvNumber": input.InvNumber,
 		"Name":      input.Name,

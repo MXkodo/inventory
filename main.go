@@ -56,5 +56,4 @@ func main() {
 	route.GET("/changelog", middleware.RequireAuth, controllers.GetChangeLog)
 
 	route.Run()
-
 }

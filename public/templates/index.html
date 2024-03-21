@@ -12,6 +12,7 @@
     <div id="notification" class="notification"></div>
   </head>
   <body>
+    
     <!--Тут таится модальное окно-->
     <div id="openModal" class="modal">
       <div class="modal-dialog">
@@ -23,9 +24,9 @@
           <div class="modal-body">
             <form id="myForm" action="/items" method="post" align="center">
               <p>Инв. номер</p>
-              <input type="text" name="invnumber" required />
+              <input type="text" name="invnumber" required maxlength="16" />
               <p>Название</p>
-              <input type="text" name="name" required />
+              <input type="text" name="name" required maxlength="50" />
               <p>Хранение</p>
 
               <!--Выпадающий список для Склада-->
@@ -47,7 +48,7 @@
               </select>
 
               <p>Описание</p>
-              <textarea name="desc"></textarea>
+              <textarea name="desc" maxlength="200"></textarea>
               <button class="archiv-button" type="submit">Сохранить</button> 
               
             </form>
@@ -75,7 +76,6 @@
                   return response.json();
               })
               .then((data) => {
-                  console.log(data);
                   // Сохраняем информацию о том, что уведомление должно быть показано
                   localStorage.setItem('showNotification', 'true');
                   // Перезагружаем страницу
@@ -91,8 +91,8 @@
               notification.style.display = 'none';
           }, 3000); // Скрываем уведомление через 3 секунды
       }
-      document.addEventListener('DOMContentLoaded', function() {
-          // Проверяем, есть ли информация о том, что уведомление должно быть показано
+             document.addEventListener('DOMContentLoaded', function() {
+          
           if (localStorage.getItem('showNotification') === 'true') {
               // Показываем уведомление
               showNotification("Запись добавлена");
@@ -261,11 +261,11 @@
               archiveButton.on("click", function (event) {
                 // Предотвращаем всплытие события
                 event.stopPropagation();
+                showNotification("Перемещено в архив");
                 // Отправляем POST-запрос на сервер
                 $.post("/audit/" + item.id, function (response) {
                   if (response.message) {
-                    //alert(response.message);
-                    // Обновляем таблицу после успешного перемещения в архив
+                    
                     updateItemsTable();
                   } else {
                     updateItemsTable();
@@ -373,6 +373,7 @@
         // Обработчик события для кнопки "Из архива"
         $("#itemsTable").on("click", ".return-button", function (event) {
           event.stopPropagation();
+          showNotification("Разархивированно");
           var itemId = $(this).data("id");
           if (!itemId) {
             console.error("ID элемента не определено");

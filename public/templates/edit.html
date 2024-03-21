@@ -16,10 +16,10 @@
   <body>
     <header>
       <div>
-        <img id="LogoId" class="agtu" src="/public/img/logo.svg" alt="Logo">
+        <a href="/"></href><img class="agtu" src="/public/img/logo.svg" alt="Logo"></a>
       </div>
       <div>
-        <img id="BackId" class="back" src="/public/img/back.svg">
+       <a href="/"> <img class="back" src="/public/img/back.svg"> </a>
    </div>
  
       <div class="hat-text" align="center">Изменение позиции</div>
@@ -28,11 +28,11 @@
     <form id="myFormUpdate" action="/items" method="post">
       <div class="form1-row">
       <p><article>Инв. номер</article></p>
-      <input type="text" name="invnumber" required />
+      <input type="text" name="invnumber" required maxlength="16" />
       <p><article>Название</article></p>
-      <input type="text" name="name" required />
+      <input type="text" name="name" required maxlength="50" />
       <p><article>Описание</article></p>
-      <textarea name="desc"></textarea>
+      <textarea name="desc" maxlength="200"></textarea>
     </div>
 
       <div class="form2-row">
@@ -168,12 +168,6 @@
           });
       });
     </script>
-    <!--Здесь хранятся ссылки при нажатии на изображения #BackId, #LogoId-->
-    <script>
-      $(document).on("click", "#BackId, #LogoId", function() {
-    window.location.href = 'index.html';
-});
-      </script>
-     
+ 
   </body>
 </html>

@@ -283,7 +283,13 @@ input {
     height: 217%;
     background: #7c85d1;
   }
+  .hidden {
+    display: none;
+  }
 
+  .visible {
+    display: block;
+  }
   .notification {
     position: fixed;
     top: 20px;
@@ -294,6 +300,16 @@ input {
     border-radius: 4px;
     display: none;
     z-index: 1000;
+    animation: slideInFromRight 0.5s forwards;
+  }
+
+  @keyframes slideInFromRight {
+    from {
+      right: -100%;
+    }
+    to {
+      right: 20px;
+    }
   }
   .line-button-1 {
     display: flex;
