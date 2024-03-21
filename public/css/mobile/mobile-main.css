@@ -373,7 +373,7 @@ li:hover .helper {
     }
   }
   
-  /*------------------------------------------------------------------------------------------------
+ /*------------------------------------------------------------------------------------------------
   ВНИЗУ МОДАЛЬНОЕ ОКНО В ЕДИНСТВЕННОМ ЭКЗМЕПЛЯРЕ
   /* свойства модального окна по умолчанию */
   .modal {
@@ -391,6 +391,7 @@ li:hover .helper {
     pointer-events: none; /* элемент невидим для событий мыши */
     margin: 0;
     padding: 0;
+    
   }
   /* при отображении модального окно */
   .modal:target {
@@ -403,6 +404,54 @@ li:hover .helper {
     position: relative;
     width: auto;
     margin: 10px;
+  }
+
+  .submit-button {
+    position: relative;
+    bottom: 2vh;
+    left: 4vh;
+    border-radius: 12px;
+    width: 86px;
+    height: 24px;
+    background: #9299d1;
+    border: none;
+    color: #ffffff;
+    filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+  }
+
+  .submit-button:hover {
+    background: #7c85d1; /* Изменить цвет при наведении */
+  }
+
+  .submit-button:active {
+    background: #6a7bf7; /* Изменить цвет при нажатии */
+  }
+  
+  .modal-desc{
+    width: 200px;
+    height: 80px;
+    border: 1px solid #6678b1;
+    border-radius: 9px;
+    filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+    color: #000;
+    font-family: "Light";
+    font-weight: 200;
+  }
+
+  .modal-input{
+    border: 1px solid #6678b1;
+    border-radius: 9px;
+    filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+    color: #000;
+    font-family: "Light";
+    font-weight: 200;
+  }
+
+  .modal-text{
+    font-size: 0.9rem;
+    font-weight: 300;
+    font-family: "Light";
+    filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
   }
   @media (min-width: 576px) {
     .modal-dialog {
@@ -425,9 +474,11 @@ li:hover .helper {
     background-color: #fff;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: 0.3rem;
+    /*border: 1px solid rgba(0, 0, 0, 0.2);*/
+    border: 2px solid #53547a;
+    border-radius: 0.9rem;
     outline: 0;
+    height: 41vh;
   }
   @media (min-width: 768px) {
     .modal-content {
@@ -458,6 +509,8 @@ li:hover .helper {
     line-height: 1.5;
     font-size: 1.25rem;
     font-weight: 500;
+    font-family: "Light";
+    
   }
   /* свойства для кнопки "Закрыть" */
   .close {
@@ -466,7 +519,7 @@ li:hover .helper {
     font-size: 24px;
     font-weight: 700;
     line-height: 1;
-    color: #000;
+    color: #d82323;
     text-shadow: 0 1px 0 #fff;
     opacity: 0.5;
     text-decoration: none;
@@ -474,7 +527,7 @@ li:hover .helper {
   /* свойства для кнопки "Закрыть" при нахождении её в фокусе или наведении */
   .close:focus,
   .close:hover {
-    color: #000;
+    color: #fc0000;
     text-decoration: none;
     cursor: pointer;
     opacity: 0.75;
