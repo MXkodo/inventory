@@ -1,4 +1,3 @@
-@media screen and (min-width: 1920px) {
 body {
   margin: 0;
 }
@@ -43,7 +42,7 @@ header {
   /*margin-left: 0%; */
   /*margin-top: 0%;*/
  /* top: 0%; */
-  bottom: 17.5vh;
+  bottom: 19.5vh;
   text-align: center; 
   font-family: "Bold";
   font-weight: 700;
@@ -54,39 +53,39 @@ header {
 
 .back{
   position: relative;
-  bottom: 13.5vh;
-  left: 60vh;
+  bottom: 13.8vh;
+  left: 65vh;
   filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
 }
 
 #myFormUpdate{
   position: relative;
   z-index: 1000;
-  margin-left: 50vh;
-  top: 20vh;
+  margin-left: 40vh;
+  top: 15vh;
 }
 
 .border-form{
   display: flex;
   position: absolute;
-  left: 47vh;
+  left: 35vh;
   bottom: 15vh;
   border: 1px solid #53547a;
   border-radius: 35px;
-  width: 720px;
-  height: 663px;
+  width: 554px;
+  height: 463px;
   filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
 }
 
 .border-qrcode{
   display: flex;
   position: absolute;
-  left: 131.5vh;
-  bottom: 49.5vh;
+  left: 132.5vh;
+  bottom: 45.7vh;
   border: 1px solid #53547a;
   border-radius: 35px;
-  width: 200px;
-  height: 200px;
+  width: 160px;
+  height: 160px;
   filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
 }
 
@@ -109,7 +108,7 @@ input{
 .button-sumbit{
   position: absolute;
   z-index: 1000;
-  left: 78vh;
+  left: 90vh;
   bottom: 30vh;
   border-radius: 12px;
   font-family: "Bold";
@@ -124,7 +123,7 @@ input{
 #downloadQR{
   position: absolute;
   left: 135.4vh;
-  bottom: 40vh;
+  bottom: 37vh;
   border-radius: 12px;
   font-family: "Bold";
     width: 120px;
@@ -245,4 +244,4 @@ button:before {
   transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
 }
 
-}
+
