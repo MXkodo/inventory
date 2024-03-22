@@ -23,11 +23,12 @@
           </div>
           <div class="modal-body">
             <form id="myForm" action="/items" method="post" align="center">
-              <p>Инв. номер</p>
-              <input type="text" name="invnumber" required maxlength="16" />
-              <p>Название</p>
-              <input type="text" name="name" required maxlength="50" />
-              <p>Хранение</p>
+
+              <p class="modal-text">Инв. номер</p>
+              <input class="modal-input" type="text" name="invnumber" required maxlength="16" />
+              <p class="modal-text">Название</p>
+              <input class="modal-input"  type="text" name="name" required maxlength="50" />
+              <p class="modal-text">Хранение</p>
 
               <!--Выпадающий список для Склада-->
 
@@ -39,7 +40,7 @@
                 <option value="Склад ИБ">Склад ИБ</option>
               </select>
 
-              <p>Бюджет</p>
+              <p class="modal-text">Бюджет</p>
 
               <select name="budget" required>
                 <option value="">Выбрать</option>
@@ -47,9 +48,9 @@
                 <option value="option2">Нет</option>
               </select>
 
-              <p>Описание</p>
-              <textarea name="desc" maxlength="200"></textarea>
-              <button class="archiv-button" type="submit">Сохранить</button> 
+              <p class="modal-text">Описание</p>
+              <textarea class="modal-desc" name="desc" maxlength="200"></textarea>
+              <button class="submit-button" type="submit">Сохранить</button> 
               
             </form>
 
@@ -214,9 +215,9 @@
           <tr>
             <th>Инв. номер</th>
             <th>Наименование</th>
-            <th onclick="sortTable(0)">Склад</th>
-            <th onclick="sortTable(1)">Дата</th>
-            <th onclick="sortTable(2)">Бюджет</th>
+            <th>Склад</th>
+            <th>Дата</th>
+            <th>Бюджет</th>
             <th>
               <img class="archiv-black" src="/public/img/archiv-black.png" />
             </th>
@@ -426,46 +427,6 @@
         });
       });
     </script>
-    <!--СОРТИРОВКА ТАБЛИЦЫ-->
-
-    <script>
-      function sortTable(columnIndex) {
-    let table, rows, switching, i, x, y, shouldSwitch;
-    table = document.getElementById("itemsTable");
-    switching = true;
-
-    while (switching) {
-        switching = false;
-        rows = table.rows;
-
-        for (i = 1; i < (rows.length - 1); i++) {
-            shouldSwitch = false;
-            x = rows[i].getElementsByTagName("TD")[columnIndex];
-            y = rows[i + 1].getElementsByTagName("TD")[columnIndex];
-
-            // Сортировка по дате
-            if (columnIndex === 1) {
-                let dateA = new Date(x.innerHTML);
-                let dateB = new Date(y.innerHTML);
-                if (dateA > dateB) {
-                    shouldSwitch = true;
-                    break;
-                }
-            } else {
-                // Сортировка по имени или имени
-                if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                    shouldSwitch = true;
-                    break;
-                }
-            }
-        }
-        if (shouldSwitch) {
-            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-            switching = true;
-        }
-    }
-}
-
-    </script>
+     
   </body>
 </html>
