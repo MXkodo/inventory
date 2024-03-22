@@ -312,6 +312,16 @@ input {
       right: 20px;
     }
   }
+
+  @media only screen and (max-width: 400px) {
+    .notification {
+        top: 0; 
+        right: 0; 
+        left: 0; 
+        width: 100%; 
+        padding: 10px; 
+    }
+}
   .line-button-1 {
     display: flex;
     position: relative;
