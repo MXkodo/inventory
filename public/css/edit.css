@@ -28,6 +28,11 @@ header {
   );
   width: 100%;
 }
+a {
+  display: inline-block;
+  width: 50px; /* Adjust as needed */
+  height: 100px; /* Adjust as needed */
+}
 
 .agtu {
   margin-top: 0.1%;
@@ -248,6 +253,12 @@ button:before {
     margin-left: 40vh;
     top: 10vh;
   }
+  a {
+    display: inline-block;
+    width: 50px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    z-index: 1000;
+  }
   .border-form {
     display: flex;
     position: absolute;
@@ -277,11 +288,12 @@ button:before {
     top: 32.5vh;
   }
   .hat-text {
-    position: relative;
+    position: absolute;
     /*margin-left: 0%; */
     /*margin-top: 0%;*/
     /* top: 0%; */
-    bottom: 18.5vh;
+    top: 1vh;
+    left: 67vh;
     text-align: center;
     font-family: "Bold";
     font-weight: 700;
