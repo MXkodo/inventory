@@ -12,6 +12,7 @@ import (
 func init() {
 	initializers.LoadEnvVariables()
 	initializers.ConnectToDb()
+	initializers.SyncItem()
 	initializers.SyncAuth()
 	initializers.SyncAudit()
 	initializers.SyncChangeLog()
@@ -19,7 +20,7 @@ func init() {
 
 func main() {
 	route := gin.Default()
-	route.LoadHTMLGlob("public/templates/*.html") 
+	route.LoadHTMLGlob("public/templates/*.html")
 
 	route.Static("/public", "./public")
 
@@ -27,14 +28,14 @@ func main() {
 	route.POST("/signup", controllers.Signup)
 	route.POST("/login", controllers.Login)
 	route.GET("/login", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "auth.html", gin.H{}) 
+		c.HTML(http.StatusOK, "auth.html", gin.H{})
 	})
 
 	route.GET("/logout", controllers.Logout)
 
 	// Главная страница
 	route.GET("/", middleware.RequireAuth, func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{}) 
+		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
 
 	//CRUD
@@ -46,10 +47,10 @@ func main() {
 		items.GET("/:id", controllers.GetItem)
 		items.PATCH("/:id", controllers.UpdateItem)
 	}
-	
+
 	//Audit
-	route.POST("/audit/:id",middleware.RequireAuth, controllers.InsertAudit) 
-	route.GET("/audit",middleware.RequireAuth, controllers.GetAllAuditItems)
+	route.POST("/audit/:id", middleware.RequireAuth, controllers.InsertAudit)
+	route.GET("/audit", middleware.RequireAuth, controllers.GetAllAuditItems)
 	route.POST("/audit/:id/return", middleware.RequireAuth, controllers.ReturnItem)
 
 	//ChangeLog

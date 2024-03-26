@@ -233,6 +233,7 @@ input {
     margin-left: 9vh;
     height: 4.3vh;
     width: auto;
+    cursor: pointer;
   }
   .pk-1 {
     padding-right: 0.3vw;
@@ -244,6 +245,7 @@ input {
     /* font-weight: 550; */
     font-family: "Bold";
     text-align: center;
+    cursor: pointer;
   }
 
   /*.jurnal{
@@ -251,15 +253,18 @@ input {
     margin-right: 35vw;
     filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));;
   }*/
-
+  .page-pk, .page-archiv, .page-jurnal {
+    display: none;
+}
+/*Подложки под страницы*/
   .page-pk {
     position: absolute;
     /*margin-top: 10px;*/
-    top: 0%;
-    left: 23.8%;
+    top: 5%;
+    left: 20.8%;
     border-radius: 14px;
-    width: 31%;
-    height: 100%;
+    width: 26.5%;
+    height: 90%;
     background: #7c85d1;
   }
 
@@ -277,11 +282,11 @@ input {
   .page-archiv {
     position: absolute;
     /*margin-top: 10px;*/
-    top: -60%;
-    left: 51%;
+    top: 5%;
+    left: 85%;
     border-radius: 14px;
-    width: 130%;
-    height: 217%;
+    width: 26.5%;
+    height: 90%;
     background: #7c85d1;
   }
   .hidden {
@@ -343,6 +348,7 @@ input {
     margin-left: 9vh;
     height: 3.2vh;
     width: auto;
+    cursor: pointer;
   }
 
   .line-button-2 {
@@ -371,6 +377,7 @@ input {
     margin-left: 8vh;
     height: 2.7vh;
     width: auto;
+    cursor: pointer;
   }
   /*Иконка Архив в таблице*/
   .archiv-black {
@@ -386,6 +393,7 @@ input {
     background: #9299d1;
     border: none;
     color: #ffffff;
+    cursor: pointer;
   }
 
   .archiv-button:hover {
@@ -430,7 +438,7 @@ input {
   }
   table {
     margin-top: 5vh;
-    width: 80vw;
+    width: 95vw;
     display: block;
     justify-content: space-between;
     text-align: center;
@@ -508,7 +516,6 @@ input {
     pointer-events: none; /* элемент невидим для событий мыши */
     margin: 0;
     padding: 0;
-    
   }
   /* при отображении модального окно */
   .modal:target {
@@ -534,6 +541,7 @@ input {
     border: none;
     color: #ffffff;
     filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+    cursor: pointer;
   }
 
   .submit-button:hover {
@@ -595,7 +603,7 @@ input {
     border: 2px solid #53547a;
     border-radius: 0.9rem;
     outline: 0;
-    height: 41vh;
+    height: 68vh;
   }
   @media (min-width: 768px) {
     .modal-content {
