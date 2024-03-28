@@ -207,7 +207,7 @@
                   <li class="login username">Кабан Кабаныч Кабанов</li>
                   <li>
                     <a class="exit" href="#" onclick="logout()"
-                      ><img src="/public/img/logout.png" />Выйти</a
+                      ><img class="logout-png" src="/public/img/logout.png" />Выйти</a
                     >
                   </li>
                 </ul>
@@ -226,6 +226,7 @@
             <th>Склад</th>
             <th>Дата</th>
             <th>Бюджет</th>
+            
             <th>
               <img class="archiv-black" src="/public/img/archiv-black.png" />
             </th>
@@ -244,7 +245,7 @@
       $(document).ready(function () {
         // Функция для обновления таблицы
         function updateItemsTable() {
-          //добавление подложки к пк1
+        
           $.get("/items", function (data) {
             var items = data.items;
             var tableBody = $("#itemsTable tbody");
@@ -299,6 +300,7 @@
         $(".pk-1").on("click", function () {
           $(".page-pk").show(); // Show .page-pk
           $(".page-archiv").hide(); // Hide .page-archiv
+          $(".page-jurnal").hide(); // Hide .page-jurnal
 
           updateItemsTable();
         });
@@ -350,6 +352,7 @@
         $(".archiv-1").on("click", function () {
           $(".page-archiv").show(); // Show .page-archiv
           $(".page-pk").hide(); // Hide .page-pk
+          $(".page-jurnal").hide(); // Hide .page-jurnal
           
           UpdateAuditTable();
         }); 
@@ -383,6 +386,9 @@
         // Вызов функции при клике на иконку "Журнал изменений"
       
         $(".jurnal-1").on("click", function () {
+          $(".page-archiv").hide(); // Hide .page-archiv
+          $(".page-pk").hide(); // Hide .page-pk
+          $(".page-jurnal").show(); // Show .page-jurnal
           UpdateChangeLogTable();
         }); 
 
@@ -438,6 +444,7 @@
           }
         });
       });
+     
     </script>
      
   </body>
