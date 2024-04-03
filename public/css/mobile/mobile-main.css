@@ -16,6 +16,7 @@
   height: 7vh;
   right: 0vh;
   filter: drop-shadow(3px 3px 2px rgb(0 0 0 / 0.25));
+  font-size: 70%;
 }
 li .exit {
   display: block;
@@ -28,11 +29,17 @@ li .exit {
 .helper li:hover {
   background-color: #6678b1;
   border-radius: 8px;
+  height: auto;
+  width: auto;
 }
 li:hover .helper {
   display: block;
 }
 
+.logout-png{
+  height: auto;
+  width: 15%;
+}
 
 @media (hover: none) and (pointer: coarse) {
     .Search {
@@ -166,16 +173,44 @@ li:hover .helper {
       text-shadow: 3px 4px 8px #000;
       font-family: "Bold";
     }
+
+    .page-archiv, .page-jurnal {
+      display: none;
+  }
+  /*Подложки под страницы*/
+  .page-pk {
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    border-radius: 14px;
+    width: 30%;
+    height: 80%;
+    background: #7c85d1;
+  }
   
-    .page-pk {
+    .page-jurnal {
       position: absolute;
-      top: 0%;
-      left: 15%;
+      /*margin-top: 10px;*/
+      top: 15%;
+      left: 50%;
       border-radius: 14px;
-      width: 35%;
-      height: 100%;
+      width: 30%;
+      height: 80%;
       background: #7c85d1;
     }
+  
+    .page-archiv {
+      position: absolute;
+      /*margin-top: 10px;*/
+      top: 15%;
+      left: 81.4%;
+      border-radius: 14px;
+      width: 23%;
+      height: 80%;
+      background: #7c85d1;
+    }
+  
+    
   
     .line-button-1 {
       position: absolute;

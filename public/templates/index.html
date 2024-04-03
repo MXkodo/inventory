@@ -120,11 +120,17 @@
               ><img class="add" src="/public/img/add.png"
             /></a>
           </div>
+<!--Контейнер для подложек страниц-->
+          <div class="container-page">
+            <div class="page-pk"></div>
+            <div class="page-archiv"></div>
+            <div class="page-jurnal"></div>
+          </div>
 
           <div class="pk-1">
             <img class="pk-2" src="/public/img/pk.svg" />
           </div>
-          <div class="Change-log">
+          <div class="pk-1">
             <article>
             <article>
               <p>Список <br />компьютеров</p>
@@ -150,6 +156,8 @@
           </div>
           <div class="archiv-1"><article>Архив</article></div>
         </div>
+
+      
 
         <div class="head test">
           <div class="box-3 test">
@@ -199,7 +207,7 @@
                   <li class="login username">Кабан Кабаныч Кабанов</li>
                   <li>
                     <a class="exit" href="#" onclick="logout()"
-                      ><img src="/public/img/logout.png" />Выйти</a
+                      ><img class="logout-png" src="/public/img/logout.png" />Выйти</a
                     >
                   </li>
                 </ul>
@@ -218,6 +226,7 @@
             <th>Склад</th>
             <th>Дата</th>
             <th>Бюджет</th>
+            
             <th>
               <img class="archiv-black" src="/public/img/archiv-black.png" />
             </th>
@@ -236,7 +245,7 @@
       $(document).ready(function () {
         // Функция для обновления таблицы
         function updateItemsTable() {
-          //добавление подложки к пк1
+        
           $.get("/items", function (data) {
             var items = data.items;
             var tableBody = $("#itemsTable tbody");
@@ -289,7 +298,10 @@
 
         // Добавление обработчика события на элемент с классом "pk-1"
         $(".pk-1").on("click", function () {
-          //очистка всех подложек
+          $(".page-pk").show(); // Show .page-pk
+          $(".page-archiv").hide(); // Hide .page-archiv
+          $(".page-jurnal").hide(); // Hide .page-jurnal
+
           updateItemsTable();
         });
 
@@ -338,6 +350,9 @@
         }
          // Вызов функции при клике на иконку "Архив"
         $(".archiv-1").on("click", function () {
+          $(".page-archiv").show(); // Show .page-archiv
+          $(".page-pk").hide(); // Hide .page-pk
+          $(".page-jurnal").hide(); // Hide .page-jurnal
           
           UpdateAuditTable();
         }); 
@@ -371,6 +386,9 @@
         // Вызов функции при клике на иконку "Журнал изменений"
       
         $(".jurnal-1").on("click", function () {
+          $(".page-archiv").hide(); // Hide .page-archiv
+          $(".page-pk").hide(); // Hide .page-pk
+          $(".page-jurnal").show(); // Show .page-jurnal
           UpdateChangeLogTable();
         }); 
 
@@ -426,6 +444,7 @@
           }
         });
       });
+     
     </script>
      
   </body>
